@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 	
     public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private Player player;
     void Start()
     {
         if (Application.isEditor)
@@ -17,7 +19,6 @@ using UnityEngine.SceneManagement;
                 return;
             }
         }
-
         StartCoroutine(LoadLevel());
     }
 
@@ -29,5 +30,8 @@ using UnityEngine.SceneManagement;
         );
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level Forest1"));
         enabled = true;
+        GetComponent<DynamicGrid>().loadGrid();
+        //DEBUG: Hard coded, need to create a dedicated script later
+        GetComponent<DynamicGrid>().placeInGrid(Vector2.zero,player.gameObject);
     }
 }

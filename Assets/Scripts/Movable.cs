@@ -32,7 +32,8 @@ public class Movable : MonoBehaviour
         //Para inimigos com multiplos sprites, trocar essa parte do codigo tal que peguemos
         //a posição de cada sprites separados. Vale notar que cas o inimigo tiver uma altura maior que 1
         //não queremos necessariamente adicionar este sprites no grid dinàmico.
-        currentCell = grid.placeInGrid(this.transform.position, this.gameObject);
+        if (grid != null)
+            currentCell = grid.placeInGrid(this.transform.position, this.gameObject);
     }
 
     protected void goTo(Vector2 movement)

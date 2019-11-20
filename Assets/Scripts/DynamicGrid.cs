@@ -14,25 +14,8 @@ public class DynamicGrid : MonoBehaviour
     [SerializeField]
     private string colliderMap = "Obstacles";
     // Start is called before the first frame update
-    void Awake()
-    {
-        if (obstacles == null)
-            loadGrid();
-    }
-    void Start()
-    {
-        if(obstacles == null)
-            loadGrid();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (obstacles == null)
-            loadGrid();
-    }
-
-    private void loadGrid()
+    public void loadGrid()
     {
         Tilemap[] maps = FindObjectsOfType<Tilemap>();
         Debug.Log("Maps: " + maps.Length);
@@ -45,6 +28,7 @@ public class DynamicGrid : MonoBehaviour
                 grid = obstacles.GetComponentInParent<GridLayout>();
             }
         }
+        /*
         if (obstacles == null)
         {
             Debug.Log("Need to create a grid");
@@ -58,6 +42,7 @@ public class DynamicGrid : MonoBehaviour
             obstacles = newMap.GetComponent<Tilemap>();
             Instantiate(newMap, grid.transform);
         }
+        */
     }
 
     // Only use getInCell when previously used cellIsEmpty
