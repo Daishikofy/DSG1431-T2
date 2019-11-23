@@ -25,7 +25,6 @@ public class Exit : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Do not let ennemies and npc go througt the door.
-        Debug.Log("Trigger with : " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
             var movable = collision.gameObject.GetComponent<Movable>();

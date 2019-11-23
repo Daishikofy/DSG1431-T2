@@ -16,7 +16,7 @@ public class MeleeAttack : Attack
         base.use(character);
 
         DynamicGrid grid = FindObjectOfType<DynamicGrid>();
-        Vector2 playerPosition = grid.worldToDynamicGridCell(character.GetComponent<Transform>().position);
+        Vector2 playerPosition = character.currentCell;
         Vector2[] affectedCells = new Vector2[damageZone.Length];
 
         //Determina quais são as casas afetadas pelo attaque baseado na posição inicial 
@@ -24,7 +24,7 @@ public class MeleeAttack : Attack
         for (int i = 0; i < damageZone.Length; i++)
         {
             Vector2 aux = base.attackDirection(damageZone[i], character.getDirection());
-            affectedCells[i] = grid.worldToDynamicGridCell(aux + playerPosition);
+            affectedCells[i] = aux + playerPosition;
         }
 
         //Instancia a animação de impacto em todas as casas atingindas
