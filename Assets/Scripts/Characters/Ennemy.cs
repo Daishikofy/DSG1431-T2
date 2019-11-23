@@ -15,7 +15,7 @@ public class Ennemy : Fighter
     private float timer;
 
     private SpriteRenderer renderer;
-    private int wDirection;
+    protected int wDirection;
     private Color color;
     // Use this for initialization
     protected override void Start()
@@ -48,7 +48,7 @@ public class Ennemy : Fighter
             goTo(Vector2.up * wDirection);
         }
     }
-
+    
     private void FixedUpdate()
     {
         if (timer <= 0)
