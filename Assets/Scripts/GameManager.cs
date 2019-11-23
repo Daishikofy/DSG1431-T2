@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
             if (loadedLevel.isLoaded)
             {
                 SceneManager.SetActiveScene(loadedLevel);
-                GetComponent<DynamicGrid>().loadGrid();
+                GetComponent<DynamicGrid>().loadObstacles();
                 return;
             }
         //}
@@ -31,7 +31,7 @@ using UnityEngine.SceneManagement;
         );
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level Forest1"));
         enabled = true;
-        GetComponent<DynamicGrid>().loadGrid();
+        GetComponent<DynamicGrid>().loadObstacles();
         //DEBUG: Hard coded, need to create a dedicated script later
         GetComponent<DynamicGrid>().placeInGrid(Vector2.zero,player.gameObject);
     }

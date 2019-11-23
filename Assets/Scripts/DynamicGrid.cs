@@ -5,44 +5,24 @@ using UnityEngine.Tilemaps;
 
 public class DynamicGrid : MonoBehaviour
 {
-    
-    public GridLayout grid;
-
-    private Tilemap obstacles;
+    private List<Tilemap> obstacles;
     private Dictionary<Vector2, GameObject> dynamicGrid = new Dictionary<Vector2, GameObject>();
 
     [SerializeField]
     private string colliderMap = "Obstacles";
     // Start is called before the first frame update
 
-    public void loadGrid()
+    public void loadObstacles()
     {
+        obstacles = new List<Tilemap>();
         Tilemap[] maps = FindObjectsOfType<Tilemap>();
-        Debug.Log("Maps: " + maps.Length);
         for (int i = 0; i < maps.Length; i++)
         {
-            Debug.Log("Map: " + maps[i].name);
-            if (maps[i].name.Contains(colliderMap))
+            if (maps[i].CompareTag("Obstacles"))
             {
-                obstacles = maps[i];
-                grid = obstacles.GetComponentInParent<GridLayout>();
+                obstacles.Add(maps[i]);
             }
         }
-        /*
-        if (obstacles == null)
-        {
-            Debug.Log("Need to create a grid");
-            GameObject newGrid = new GameObject("DynamicGrid");
-            newGrid.AddComponent<GridLayout>();
-            grid = newGrid.GetComponent<GridLayout>();
-            Instantiate(newGrid);
-
-            GameObject newMap = new GameObject(colliderMap);
-            newMap.AddComponent<Tilemap>();
-            obstacles = newMap.GetComponent<Tilemap>();
-            Instantiate(newMap, grid.transform);
-        }
-        */
     }
 
     // Only use getInCell when previously used cellIsEmpty
@@ -94,11 +74,15 @@ public class DynamicGrid : MonoBehaviour
     {
         Vector3Int obstacle = new Vector3Int((int)cell.x, (int)cell.y, 0);
 
-        
-        if (obstacles.GetTile(obstacle))
+        if (dynamicGrid.ContainsKey(cell))
             return false;
-        else if (dynamicGrid.ContainsKey(cell))
-            return false;
+
+        foreach (var map in obstacles)
+        {
+            if (map.GetTile(obstacle))
+                return false;           
+        }
+     
         return true;
     }
 }
