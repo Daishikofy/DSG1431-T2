@@ -96,7 +96,7 @@ public class Fighter : Movable
         manaIsRegenarating = false;
     }
 
-    public void OnDamaged(int damage)
+    public virtual void OnDamaged(int damage)
     {
         //TODO animator: Blink
         addLife(damage * -1);

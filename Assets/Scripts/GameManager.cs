@@ -8,17 +8,18 @@ using UnityEngine.SceneManagement;
 {
     [SerializeField]
     private Player player;
-    void Start()
+    void Awake()
     {
-        if (Application.isEditor)
-        {
+        /*if (Application.isEditor)
+        {*/
             Scene loadedLevel = SceneManager.GetSceneByName("Level Forest1");
             if (loadedLevel.isLoaded)
             {
                 SceneManager.SetActiveScene(loadedLevel);
+                GetComponent<DynamicGrid>().loadGrid();
                 return;
             }
-        }
+        //}
         StartCoroutine(LoadLevel());
     }
 
