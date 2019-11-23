@@ -7,10 +7,10 @@ using System.Collections.Generic;
 public class Movable : MonoBehaviour
 {
     protected DynamicGrid grid;
+    // [SerializeField]
+    public bool isMoving = false; //TODO:Set as protected and implement exitDoor in player's script
     [SerializeField]
-    protected bool isMoving = false;
-    [SerializeField]
-    protected bool onCooldown = false;
+    protected bool onCooldown = false; 
     [SerializeField]
     private bool onExit = false;
     [Space]
@@ -20,8 +20,8 @@ public class Movable : MonoBehaviour
     protected float speed;
     [SerializeField]
     protected float currentSpeed;
-    [SerializeField]
-    protected Vector2 currentCell;
+
+    public Vector2 currentCell;
 
     // Use this for initialization
     protected virtual void Start()
@@ -141,5 +141,12 @@ public class Movable : MonoBehaviour
         }
 
         onCooldown = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector2 pos = currentCell + (Vector2.one * 0.5f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(pos, 0.1f);
     }
 }

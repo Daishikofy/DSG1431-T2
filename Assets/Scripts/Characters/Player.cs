@@ -107,7 +107,6 @@ public class Player : Fighter
 
     private void horizontal(float value)
     {
-        Debug.Log("input: " + value);
         this.movement.x = (int)value;
         this.movement.y = 0;
     }
@@ -119,7 +118,6 @@ public class Player : Fighter
     }
     private void walk(Vector2 movement)
     {
-        Debug.Log("input: " + movement);
         this.movement.x = (int)movement.x;
         this.movement.y = (int)movement.y;
     }
