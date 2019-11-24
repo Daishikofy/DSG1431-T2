@@ -14,6 +14,10 @@ public class UIController : MonoBehaviour
     Image powerPanel;
     bool powerPanelActivated = false;
 
+    [SerializeField]
+    Sprite defaultIcon;
+    [SerializeField]
+    Image[] powerImages;
     private CatsInput controller;
 
     // Start is called before the first frame update
@@ -22,6 +26,27 @@ public class UIController : MonoBehaviour
         controller = new CatsInput();
         controller.Player.PrepAttack.Enable();
         controller.Player.PrepAttack.performed += context => showPowerPanel();
+        setIcons();
+    }
+
+    private void setIcons()
+    {
+        //TODO: Dear futur self. This code is really bad, needs improvement but I am to tired to make it good right know 
+        Attack[] attacks = FindObjectOfType<Player>().moveSet;
+        var attackIcons = new Sprite[4];
+        int i;
+        for (i = 0; i < attacks.Length; i++)
+        {
+            attackIcons[i] = attacks[i].icon;
+        }
+        for (; i < attackIcons.Length; i++)
+        {
+            attackIcons[i] = defaultIcon;
+        }
+        for (i = 0; i < attackIcons.Length; i++)
+        {
+            powerImages[i].sprite = attackIcons[i];
+        }
     }
     public void updateLifePoints(int life)
     {

@@ -41,7 +41,7 @@ public class Fighter : Movable
     private bool stagged = false;
     [Space]
     [SerializeField]
-    protected Attack[] moveSet;
+    public Attack[] moveSet; // TODO: Botar privado novamente (vai quebrar no nivel do panel de attaques)
     [Space]
 
     [SerializeField]

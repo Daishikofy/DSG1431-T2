@@ -42,7 +42,7 @@ public class Player : Fighter
         if (timeFromLastAttack > comboTiming && currentCombo > 0)
             setCombo(0);
         if (timeFromLastAttack >= rechargeTime && currentMana < maxMana)
-            currentMana = maxMana;
+            setMana(maxMana);
         if (currentMana <= 0)
         {
             setMana(0);
@@ -108,6 +108,7 @@ public class Player : Fighter
     }
     private void useAttackB()
     {
+        Debug.Log("attack:" + moveSet[1].name);
         lastAttack = 1;
     }
     private void useAttackX()

@@ -30,7 +30,7 @@ public class MeleeAttack : Attack
         //Instancia a animação de impacto em todas as casas atingindas
         for (int i = 0; i < affectedCells.Length; i++)
         {
-            Instantiate(attack, (Vector3)affectedCells[i], Quaternion.identity);
+            Instantiate(attackObject, (Vector3)affectedCells[i], Quaternion.identity);
 
             //DEBUG: Parte so para teste, quebra se usar ataque em outra coisa do que um movebleObject   
             if (!grid.cellIsEmpty(affectedCells[i]))

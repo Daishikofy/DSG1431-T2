@@ -161,7 +161,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""e04cf6a7-4931-476b-9c52-a564ef8c6395"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -205,7 +205,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""28e70129-4509-473c-ac9e-bbba6d167d2d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

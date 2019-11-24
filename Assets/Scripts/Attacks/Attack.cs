@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public enum Element { None, Fire, Water, Earth };
+
 public abstract class Attack : ScriptableObject
 {
-    // Start is called before the first frame update
+
+    public Sprite icon;
+    
     [SerializeField]
     protected string movesName;
     [SerializeField]
@@ -12,16 +17,13 @@ public abstract class Attack : ScriptableObject
     [SerializeField]
     protected int cost;
     [SerializeField]
-    protected int element;
+    protected Element element;
     [SerializeField]
     protected float cooldDown;
-    /*[SerializeField]
-    protected float stagger;
-    */
-    [SerializeField]
-    protected GameObject attack;
 
     [SerializeField]
+    protected GameObject attackObject;
+
     protected Fighter character;
 
     public virtual void use(Fighter character)

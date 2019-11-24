@@ -28,7 +28,7 @@ public class ProjectileAttack : Attack
         for (int i = 0; i < affectedCells.Length; i++)
         {
             //TODO : Quarternion rotation acording to direction[i]
-            GameObject projectileObj = Instantiate(attack
+            GameObject projectileObj = Instantiate(attackObject
                                                    , (Vector3)affectedCells[i]
                                                    , Quaternion.identity);
             projectileObj.GetComponent<Projectile>().Inicialize(directions[i], range, power, this);
