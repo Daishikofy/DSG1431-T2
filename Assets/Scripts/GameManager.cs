@@ -10,21 +10,22 @@ using UnityEngine.UI;
     private Player player;
     [SerializeField]
     private Image transition;
+    [SerializeField]
+    private int firstSceneIndex = 2;
 
     private int loadedLevelBuildIndex = 0;
     void Start()
     {
-        int index = 2;
-        Scene loadedLevel = SceneManager.GetSceneByBuildIndex(index);
+        Scene loadedLevel = SceneManager.GetSceneByBuildIndex(firstSceneIndex);
         if (loadedLevel.isLoaded)
         {
             SceneManager.SetActiveScene(loadedLevel);
             GetComponent<DynamicGrid>().loadObstacles();
-            loadedLevelBuildIndex = index;
+            loadedLevelBuildIndex = firstSceneIndex;
             return;
         }
         else
-            StartCoroutine(LoadLevel(index));
+            StartCoroutine(LoadLevel(firstSceneIndex));
     }
 
     public void changeLevel(int levelIndex)
