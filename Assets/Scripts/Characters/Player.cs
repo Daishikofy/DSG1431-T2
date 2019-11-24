@@ -8,10 +8,9 @@ using UnityEngine.InputSystem;
 public class Player : Fighter
 {
     private Animator animator;
-    private int lastAttack;
-    [SerializeField]
-    private PlayerInput playerInput;
+    private int lastAttack;   
     private CatsInput controller;
+    private int stop = 0;
 
     [SerializeField]
     private float rechargeTime = 10.0f;
@@ -85,7 +84,10 @@ public class Player : Fighter
                 animator.SetFloat("Move Y", direction.y);
             }
         }
-        goTo(movement);
+        if (stop <= 0)
+            goTo(movement);
+        else
+            stop--;
     }
 
     public void changeLevel(Vector2 position)
@@ -93,6 +95,11 @@ public class Player : Fighter
         currentCell = position;
         transform.position = position;
         grid.placeInGrid(currentCell, this.gameObject);
+    }
+
+    public void stopForFrames(int frames)
+    {
+        stop = frames;
     }
 
     private void useAttackA()
@@ -114,12 +121,16 @@ public class Player : Fighter
 
     private void horizontal(float value)
     {
+        if (value == 0 && movement.y != 0)
+            return;
         this.movement.x = (int)value;
         this.movement.y = 0;
     }
 
     private void vertical (float value)
     {
+        if (value == 0 && movement.x != 0)
+            return;
         this.movement.x = 0;
         this.movement.y = (int)value;
     }

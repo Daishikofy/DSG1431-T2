@@ -27,9 +27,10 @@ public class Exit : MonoBehaviour
         //Do not let ennemies and npc go througt the door.
         if (collision.gameObject.CompareTag("Player"))
         {
-            var movable = collision.gameObject.GetComponent<Player>();
-            if (!movable.isMoving)
-                enterDoor(movable);
+            var player = collision.gameObject.GetComponent<Player>();
+            player.stopForFrames(3);
+            if (!player.isMoving)
+                enterDoor(player);
         }
     }
 
