@@ -70,5 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb6e4df6c824ca469e17957fdee1498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: ThisLevel
+  levelIndex: -1
   position: {x: 4, y: -3}
