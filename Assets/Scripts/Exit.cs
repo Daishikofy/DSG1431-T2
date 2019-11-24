@@ -5,7 +5,7 @@ using UnityEngine;
 public class Exit : MonoBehaviour
 {
     [SerializeField]
-    private string levelName = "ThisLevel"; //TODO: ComboBox with scenes name?
+    private int levelIndex = -1; //TODO: ComboBox with scenes name?
     [SerializeField]
     private Vector2 position;
     // Start is called before the first frame update
@@ -27,16 +27,16 @@ public class Exit : MonoBehaviour
         //Do not let ennemies and npc go througt the door.
         if (collision.gameObject.CompareTag("Player"))
         {
-            var movable = collision.gameObject.GetComponent<Movable>();
+            var movable = collision.gameObject.GetComponent<Player>();
             if (!movable.isMoving)
                 enterDoor(movable);
         }
     }
 
-    private void enterDoor(Movable character)
+    private void enterDoor(Player character)
     {
         //If the exit is in the same scene
-        if (levelName == "ThisLevel")
+        if (levelIndex == -1)
         {
             FindObjectOfType<DynamicGrid>().moveInGrid(character.currentCell, position);
             character.currentCell = position;
@@ -44,6 +44,9 @@ public class Exit : MonoBehaviour
         }
         //TODO: Study if it would be more eficiente for the dynamicGrid to be static
         else
-            Debug.Log("Movement between scenes yet to be implemented");
+        {
+            FindObjectOfType<GameManager>().changeLevel(levelIndex);
+            character.changeLevel(position);
+        }
     }
 }

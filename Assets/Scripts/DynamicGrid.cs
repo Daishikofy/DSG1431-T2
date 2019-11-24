@@ -8,10 +8,13 @@ public class DynamicGrid : MonoBehaviour
     private List<Tilemap> obstacles;
     private Dictionary<Vector2, GameObject> dynamicGrid = new Dictionary<Vector2, GameObject>();
 
-    [SerializeField]
-    private string colliderMap = "Obstacles";
     // Start is called before the first frame update
 
+    public void clear()
+    {
+        obstacles = null;
+        dynamicGrid = new Dictionary<Vector2, GameObject>();
+    }
     public void loadObstacles()
     {
         obstacles = new List<Tilemap>();
@@ -81,8 +84,7 @@ public class DynamicGrid : MonoBehaviour
         {
             if (map.GetTile(obstacle))
                 return false;           
-        }
-     
+        }    
         return true;
     }
 }

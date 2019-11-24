@@ -88,6 +88,13 @@ public class Player : Fighter
         goTo(movement);
     }
 
+    public void changeLevel(Vector2 position)
+    {
+        currentCell = position;
+        transform.position = position;
+        grid.placeInGrid(currentCell, this.gameObject);
+    }
+
     private void useAttackA()
     {
         lastAttack = 0;
