@@ -19,9 +19,17 @@ public class @CatsInput : IInputActionCollection, IDisposable
             ""id"": ""2c8ac0e0-b213-4291-8563-94929083e8bf"",
             ""actions"": [
                 {
-                    ""name"": ""AttackA"",
+                    ""name"": ""PrepAttack"",
                     ""type"": ""Button"",
                     ""id"": ""f5002512-0364-494d-8b78-40a0a3e33451"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""AttackA"",
+                    ""type"": ""Button"",
+                    ""id"": ""50350732-ed57-409a-871e-7f4e0aba8c84"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -556,6 +564,17 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""action"": ""X"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d559c5dd-65c4-4f4c-a050-00180d3aa6bf"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrepAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1279,6 +1298,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_PrepAttack = m_Player.FindAction("PrepAttack", throwIfNotFound: true);
         m_Player_AttackA = m_Player.FindAction("AttackA", throwIfNotFound: true);
         m_Player_AttackB = m_Player.FindAction("AttackB", throwIfNotFound: true);
         m_Player_AttackX = m_Player.FindAction("AttackX", throwIfNotFound: true);
@@ -1350,6 +1370,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_PrepAttack;
     private readonly InputAction m_Player_AttackA;
     private readonly InputAction m_Player_AttackB;
     private readonly InputAction m_Player_AttackX;
@@ -1362,6 +1383,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
     {
         private @CatsInput m_Wrapper;
         public PlayerActions(@CatsInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PrepAttack => m_Wrapper.m_Player_PrepAttack;
         public InputAction @AttackA => m_Wrapper.m_Player_AttackA;
         public InputAction @AttackB => m_Wrapper.m_Player_AttackB;
         public InputAction @AttackX => m_Wrapper.m_Player_AttackX;
@@ -1379,6 +1401,9 @@ public class @CatsInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
+                @PrepAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrepAttack;
+                @PrepAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrepAttack;
+                @PrepAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrepAttack;
                 @AttackA.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackA;
                 @AttackA.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackA;
                 @AttackA.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackA;
@@ -1407,6 +1432,9 @@ public class @CatsInput : IInputActionCollection, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @PrepAttack.started += instance.OnPrepAttack;
+                @PrepAttack.performed += instance.OnPrepAttack;
+                @PrepAttack.canceled += instance.OnPrepAttack;
                 @AttackA.started += instance.OnAttackA;
                 @AttackA.performed += instance.OnAttackA;
                 @AttackA.canceled += instance.OnAttackA;
@@ -1603,6 +1631,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
+        void OnPrepAttack(InputAction.CallbackContext context);
         void OnAttackA(InputAction.CallbackContext context);
         void OnAttackB(InputAction.CallbackContext context);
         void OnAttackX(InputAction.CallbackContext context);

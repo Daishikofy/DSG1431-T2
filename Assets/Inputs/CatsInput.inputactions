@@ -6,9 +6,17 @@
             "id": "2c8ac0e0-b213-4291-8563-94929083e8bf",
             "actions": [
                 {
-                    "name": "AttackA",
+                    "name": "PrepAttack",
                     "type": "Button",
                     "id": "f5002512-0364-494d-8b78-40a0a3e33451",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "AttackA",
+                    "type": "Button",
+                    "id": "50350732-ed57-409a-871e-7f4e0aba8c84",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -543,6 +551,17 @@
                     "action": "X",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d559c5dd-65c4-4f4c-a050-00180d3aa6bf",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrepAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
