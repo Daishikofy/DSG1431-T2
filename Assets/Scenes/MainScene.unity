@@ -1000,6 +1000,13 @@ MonoBehaviour:
   manaPoints: {fileID: 1809257921}
   currentCombo: {fileID: 1112750710}
   powerPanel: {fileID: 255700526}
+  defaultIcon: {fileID: 5931144226451071882, guid: 534cbda440e4221419955a054c799554,
+    type: 3}
+  powerImages:
+  - {fileID: 683165882}
+  - {fileID: 1706593555}
+  - {fileID: 989799}
+  - {fileID: 1619651373}
 --- !u!1 &1260479251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1149,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cdeacf5e7b6d774f978f25edbba4785, type: 2}
   - {fileID: 11400000, guid: abd3909e91794d14da2f88563f6c584b, type: 2}
   - {fileID: 11400000, guid: 272146fcab05e9b419fc1ce9297cfeb5, type: 2}
-  - {fileID: 11400000, guid: 70b0f1366bfe74a459f0b21093403c79, type: 2}
   updateLifeUI:
     m_PersistentCalls:
       m_Calls:
