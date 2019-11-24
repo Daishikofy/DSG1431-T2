@@ -6,12 +6,13 @@ public class CameraController : MonoBehaviour
     public float distanceToPlayer;
 
     private GameObject player;
+    [SerializeField]
     private Vector3 offset;
     private Vector3 previousPos;
     void Start()
     {
         player = FindObjectOfType<Player>().gameObject;
-        offset = transform.position - player.transform.position;
+        this.transform.position += player.transform.position + offset;
         previousPos = player.transform.position;
     }
 
