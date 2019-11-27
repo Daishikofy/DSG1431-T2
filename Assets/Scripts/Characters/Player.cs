@@ -24,6 +24,7 @@ public class Player : Fighter
         controller.Player.AttackB.performed += context => useAttackB();
         controller.Player.AttackX.performed += context => useAttackX();
         controller.Player.AttackY.performed += context => useAttackY();
+		controller.Player.Interact.performed += context => interact();
     }
     protected override void Start()
     {
@@ -121,6 +122,11 @@ public class Player : Fighter
     {
         lastAttack = 3;
     }
+	
+	private void interact()
+	{
+		
+	}
 
     private void horizontal(float value)
     {

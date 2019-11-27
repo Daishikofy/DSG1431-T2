@@ -6,7 +6,7 @@
             "id": "2c8ac0e0-b213-4291-8563-94929083e8bf",
             "actions": [
                 {
-                    "name": "PrepAttack",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "f5002512-0364-494d-8b78-40a0a3e33451",
                     "expectedControlType": "",
@@ -14,9 +14,17 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "AttackA",
+                    "name": "PrepAttack",
                     "type": "Button",
                     "id": "50350732-ed57-409a-871e-7f4e0aba8c84",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "AttackA",
+                    "type": "Button",
+                    "id": "abaab35a-ec2d-416d-a0c8-b537a26d2708",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -24,7 +32,7 @@
                 {
                     "name": "AttackB",
                     "type": "Button",
-                    "id": "abaab35a-ec2d-416d-a0c8-b537a26d2708",
+                    "id": "60b165d3-6fc2-411a-b778-d3fd02341f02",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
@@ -32,7 +40,7 @@
                 {
                     "name": "AttackX",
                     "type": "Button",
-                    "id": "60b165d3-6fc2-411a-b778-d3fd02341f02",
+                    "id": "e42787e0-a92e-4b59-b7c3-7c3df36335bf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
@@ -40,7 +48,7 @@
                 {
                     "name": "AttackY",
                     "type": "Button",
-                    "id": "e42787e0-a92e-4b59-b7c3-7c3df36335bf",
+                    "id": "c303c126-51e9-48fb-b783-9437688171f3",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
@@ -48,7 +56,7 @@
                 {
                     "name": "Restart",
                     "type": "Button",
-                    "id": "c303c126-51e9-48fb-b783-9437688171f3",
+                    "id": "f575594b-03c6-483c-93c5-ded2d44b1834",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
@@ -56,7 +64,7 @@
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "f575594b-03c6-483c-93c5-ded2d44b1834",
+                    "id": "71644d37-5364-4bfc-8194-0a9f4a6da727",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "Press(behavior=2),MultiTap"
@@ -64,7 +72,7 @@
                 {
                     "name": "Y",
                     "type": "Value",
-                    "id": "71644d37-5364-4bfc-8194-0a9f4a6da727",
+                    "id": "2f084e06-11f2-4b59-aaa7-45c2d5f7e9dd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
@@ -72,7 +80,7 @@
                 {
                     "name": "X",
                     "type": "Button",
-                    "id": "2f084e06-11f2-4b59-aaa7-45c2d5f7e9dd",
+                    "id": "0d752e9e-7f23-44da-bac2-61b0d5e7f10f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
@@ -560,6 +568,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PrepAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a35ffa7-0f88-4949-9f0f-5bdf8607162e",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "295da858-9dbc-4d9d-9abd-30e0280dcf56",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

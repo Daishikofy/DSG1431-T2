@@ -19,7 +19,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
             ""id"": ""2c8ac0e0-b213-4291-8563-94929083e8bf"",
             ""actions"": [
                 {
-                    ""name"": ""PrepAttack"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""f5002512-0364-494d-8b78-40a0a3e33451"",
                     ""expectedControlType"": """",
@@ -27,9 +27,17 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=2)""
                 },
                 {
-                    ""name"": ""AttackA"",
+                    ""name"": ""PrepAttack"",
                     ""type"": ""Button"",
                     ""id"": ""50350732-ed57-409a-871e-7f4e0aba8c84"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""AttackA"",
+                    ""type"": ""Button"",
+                    ""id"": ""abaab35a-ec2d-416d-a0c8-b537a26d2708"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -37,7 +45,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""AttackB"",
                     ""type"": ""Button"",
-                    ""id"": ""abaab35a-ec2d-416d-a0c8-b537a26d2708"",
+                    ""id"": ""60b165d3-6fc2-411a-b778-d3fd02341f02"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -45,7 +53,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""AttackX"",
                     ""type"": ""Button"",
-                    ""id"": ""60b165d3-6fc2-411a-b778-d3fd02341f02"",
+                    ""id"": ""e42787e0-a92e-4b59-b7c3-7c3df36335bf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -53,7 +61,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""AttackY"",
                     ""type"": ""Button"",
-                    ""id"": ""e42787e0-a92e-4b59-b7c3-7c3df36335bf"",
+                    ""id"": ""c303c126-51e9-48fb-b783-9437688171f3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -61,7 +69,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Restart"",
                     ""type"": ""Button"",
-                    ""id"": ""c303c126-51e9-48fb-b783-9437688171f3"",
+                    ""id"": ""f575594b-03c6-483c-93c5-ded2d44b1834"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -69,7 +77,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
-                    ""id"": ""f575594b-03c6-483c-93c5-ded2d44b1834"",
+                    ""id"": ""71644d37-5364-4bfc-8194-0a9f4a6da727"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2),MultiTap""
@@ -77,7 +85,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Y"",
                     ""type"": ""Value"",
-                    ""id"": ""71644d37-5364-4bfc-8194-0a9f4a6da727"",
+                    ""id"": ""2f084e06-11f2-4b59-aaa7-45c2d5f7e9dd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
@@ -85,7 +93,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""X"",
                     ""type"": ""Button"",
-                    ""id"": ""2f084e06-11f2-4b59-aaa7-45c2d5f7e9dd"",
+                    ""id"": ""0d752e9e-7f23-44da-bac2-61b0d5e7f10f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
@@ -573,6 +581,28 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrepAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a35ffa7-0f88-4949-9f0f-5bdf8607162e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""295da858-9dbc-4d9d-9abd-30e0280dcf56"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1298,6 +1328,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_PrepAttack = m_Player.FindAction("PrepAttack", throwIfNotFound: true);
         m_Player_AttackA = m_Player.FindAction("AttackA", throwIfNotFound: true);
         m_Player_AttackB = m_Player.FindAction("AttackB", throwIfNotFound: true);
@@ -1370,6 +1401,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_PrepAttack;
     private readonly InputAction m_Player_AttackA;
     private readonly InputAction m_Player_AttackB;
@@ -1383,6 +1415,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
     {
         private @CatsInput m_Wrapper;
         public PlayerActions(@CatsInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @PrepAttack => m_Wrapper.m_Player_PrepAttack;
         public InputAction @AttackA => m_Wrapper.m_Player_AttackA;
         public InputAction @AttackB => m_Wrapper.m_Player_AttackB;
@@ -1401,6 +1434,9 @@ public class @CatsInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @PrepAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrepAttack;
                 @PrepAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrepAttack;
                 @PrepAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrepAttack;
@@ -1432,6 +1468,9 @@ public class @CatsInput : IInputActionCollection, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @PrepAttack.started += instance.OnPrepAttack;
                 @PrepAttack.performed += instance.OnPrepAttack;
                 @PrepAttack.canceled += instance.OnPrepAttack;
@@ -1631,6 +1670,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
+        void OnInteract(InputAction.CallbackContext context);
         void OnPrepAttack(InputAction.CallbackContext context);
         void OnAttackA(InputAction.CallbackContext context);
         void OnAttackB(InputAction.CallbackContext context);
