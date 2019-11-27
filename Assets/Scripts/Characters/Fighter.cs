@@ -120,6 +120,7 @@ public class Fighter : Movable
 
     public virtual void OnDamaged(int damage)
     {
+        Debug.Log("On damage");
         if (floatingText)
             ShowFloatingText(damage);
         //TODO animator: Blink

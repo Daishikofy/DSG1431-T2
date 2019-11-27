@@ -56,7 +56,9 @@ public abstract class Attack : ScriptableObject
     }
     public void giveDamage(Fighter target)
     {
-        target.OnDamaged(power);
+        Debug.Log("Gives damages");
+        int damages = calculateDamage();
+        target.OnDamaged(damages);
         character.addCombo();
     }
 }

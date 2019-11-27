@@ -79,12 +79,12 @@ public class DynamicGrid : MonoBehaviour
 
         if (dynamicGrid.ContainsKey(cell))
             return false;
-
-        foreach (var map in obstacles)
-        {
-            if (map.GetTile(obstacle))
-                return false;           
-        }    
+        if (obstacles != null)
+            foreach (var map in obstacles)
+            {
+                if (map.GetTile(obstacle))
+                    return false;           
+            }    
         return true;
     }
 }

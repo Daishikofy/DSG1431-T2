@@ -41,7 +41,10 @@ public class Projectile : Movable
             {
                 GameObject target = grid.getInCell(this.transform.position);
                 if (target != null)
+                {
+                    Debug.Log("bam");
                     GiveDamages(target);
+                }
             }
 
             Instantiate(explosion, this.transform.position, Quaternion.identity);
@@ -52,7 +55,6 @@ public class Projectile : Movable
     private void GiveDamages(GameObject target)
     {
         Fighter ennemy = target.GetComponent<Fighter>();
-        ennemy.OnDamaged(damage);
         projectilController.giveDamage(ennemy);
     }
 
