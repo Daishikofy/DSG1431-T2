@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Events;
 
 public class Fighter : Movable
@@ -10,6 +11,7 @@ public class Fighter : Movable
     protected int maxLife;
     [SerializeField]
     protected int currentLife;
+    protected bool attackCoolDown;
 
     [Space]
     [SerializeField]
@@ -17,14 +19,14 @@ public class Fighter : Movable
     public int currentMana;
     [SerializeField]
     protected float manaCoolDown;
-    [SerializeField]
+    //[SerializeField]
     protected bool manaIsRegenarating;
 
     [Space]
-    [SerializeField]
-    protected int magicPower;
-    [SerializeField]
-    protected int physicPower;
+    //[SerializeField]
+    public int magicPower;
+    //[SerializeField]
+    public int physicPower;
 
     [Space]
     [SerializeField]
@@ -35,6 +37,9 @@ public class Fighter : Movable
     [SerializeField]
     protected float comboTiming;
 
+    [Space]
+    [SerializeField]
+    private GameObject floatingText;
     [Space]
     [SerializeField]
     private float stagger = 0.25f;
@@ -95,9 +100,28 @@ public class Fighter : Movable
 
         manaIsRegenarating = false;
     }
+    public void AttackCoolDown(float coolDown)
+    {
+        StartCoroutine(AttackCoolDownCoroutine(coolDown));
+    }
+    protected IEnumerator AttackCoolDownCoroutine(float coolDown)
+    {
+        attackCoolDown = true;
+        float time = coolDown;
+
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+
+        attackCoolDown = false;
+    }
 
     public virtual void OnDamaged(int damage)
     {
+        if (floatingText)
+            ShowFloatingText(damage);
         //TODO animator: Blink
         addLife(damage * -1);
         stagged = true;
@@ -149,4 +173,11 @@ public class Fighter : Movable
         currentCombo = combo;
         updateComboUI.Invoke(currentCombo);
     }
+
+    private void ShowFloatingText(int damage)
+    {
+        var obj = Instantiate(floatingText, this.transform.position, Quaternion.identity, this.transform);
+        obj.GetComponent<TextMeshPro>().text = damage.ToString();
+    }
+
 }

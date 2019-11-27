@@ -52,6 +52,8 @@ public class Player : Fighter
         {
             lastAttack = -1;
         }
+        if (attackCoolDown)
+            return;
 
         if (!isMoving)
         {

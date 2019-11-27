@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341d3c1c28d289b4980b8ec1d5f93695, type: 3}
   m_Name: Projectile_FireBall
   m_EditorClassIdentifier: 
+  icon: {fileID: 4328313216744736806, guid: 534cbda440e4221419955a054c799554, type: 3}
   movesName: FireBall
   power: 4
+  magicFactor: 0
+  fisicFactor: 0
   cost: 5
   element: 0
-  cooldDown: 0
-  attack: {fileID: 3367751495916030611, guid: 263ace4327e749248b763b5c956fe3c0, type: 3}
-  character: {fileID: 0}
+  cooldDown: 0.1
+  attackObject: {fileID: 3367751495916030611, guid: 263ace4327e749248b763b5c956fe3c0,
+    type: 3}
   startingZone:
-  - {x: 0, y: 1}
+  - {x: 0, y: 2}
   range: 3

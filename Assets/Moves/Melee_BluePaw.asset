@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd0ab37b0226f645be7fc01a822a136, type: 3}
   m_Name: Melee_BluePaw
   m_EditorClassIdentifier: 
+  icon: {fileID: -3370196891770709928, guid: 534cbda440e4221419955a054c799554, type: 3}
   movesName: BluePaw
   power: 3
+  magicFactor: 0
+  fisicFactor: 0
   cost: 2
   element: 0
-  cooldDown: 0
-  attack: {fileID: 4068431066314334352, guid: 0924e24487db3f643821a0db4b725b4f, type: 3}
-  character: {fileID: 0}
+  cooldDown: 0.1
+  attackObject: {fileID: 4068431066314334352, guid: 0924e24487db3f643821a0db4b725b4f,
+    type: 3}
   damageZone:
   - {x: 0, y: 1}
   - {x: 0, y: -1}

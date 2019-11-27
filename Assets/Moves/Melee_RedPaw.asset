@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd0ab37b0226f645be7fc01a822a136, type: 3}
   m_Name: Melee_RedPaw
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   movesName: RedPaw
   power: 1
+  magicFactor: 0
+  fisicFactor: 0
   cost: 3
   element: 0
-  cooldDown: 0
-  attack: {fileID: 4068431066314334352, guid: 0924e24487db3f643821a0db4b725b4f, type: 3}
-  character: {fileID: 0}
+  cooldDown: 0.1
+  attackObject: {fileID: 0}
   damageZone:
   - {x: 0, y: 2}
   - {x: 1, y: 2}

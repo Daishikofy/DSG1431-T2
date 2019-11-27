@@ -32,13 +32,6 @@ public class ProjectileAttack : Attack
                                                    , (Vector3)affectedCells[i]
                                                    , Quaternion.identity);
             projectileObj.GetComponent<Projectile>().Inicialize(directions[i], range, power, this);
-
-            //DEBUG: Parte so para teste, quebra se usar ataque em outra coisa do que um movebleObject
-            if (!grid.cellIsEmpty(affectedCells[i]))
-            {/*
-                GameObject target = grid.getInCell(affectedCells[i]);
-                target.GetComponent<SpriteRenderer>().color = Color.black;*/
-            }
         }
     }
 }

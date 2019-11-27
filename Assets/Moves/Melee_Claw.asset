@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd0ab37b0226f645be7fc01a822a136, type: 3}
   m_Name: Melee_Claw
   m_EditorClassIdentifier: 
+  icon: {fileID: 4786578252275087462, guid: 534cbda440e4221419955a054c799554, type: 3}
   movesName: Claw
   power: 1
+  magicFactor: 0
+  fisicFactor: 0
   cost: 0
   element: 0
-  cooldDown: 0
-  attack: {fileID: 4409614515670714493, guid: 50a964bea5e408d45845081275331f08, type: 3}
-  character: {fileID: 0}
+  cooldDown: 0.1
+  attackObject: {fileID: 4409614515670714493, guid: 50a964bea5e408d45845081275331f08,
+    type: 3}
   damageZone:
   - {x: 0, y: 1}

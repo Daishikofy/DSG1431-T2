@@ -52,73 +52,9 @@ public class Projectile : Movable
     private void GiveDamages(GameObject target)
     {
         Fighter ennemy = target.GetComponent<Fighter>();
-        ennemy.OnDamaged(damage);      
+        ennemy.OnDamaged(damage);
         projectilController.giveDamage(ennemy);
     }
 
-
-
-
-
-
-
-
-
-    /*
-    private bool isInicialized;
-    private Vector2 direction;
-    private int range;
-    private int damage;
-
-    [SerializeField]
-    private GameObject explosion;
-    private void Start()
-    {
-        base.Start();
-        isInicialized = true;
-    }
-    // Update is called once per frame
-    */
-    /*
-void Update()
-    {
-        Debug.Log("Passou aqui 4");
-        direction = Vector2.up;
-        if (!isInicialized || grid == null)
-            return;
-
-        Debug.Log("Passou aqui 5");
-        while (range > 0)
-        {
-            Debug.Log("Passou aqui 6");
-            Vector2 projectilePosition = grid.worldToDynamicGridCell(this.GetComponent<Transform>().position);
-            Debug.Log("Range: " + range);
-            goTo(direction);
-            range -= 1;*/
-    /*
-    if (grid.cellIsEmpty(projectilePosition))
-    {
-        Debug.Log("Range: " + range);
-        goTo(direction);
-        range -= 1;
-    }
-    else
-    {
-        Instantiate(explosion, (Vector3)projectilePosition, Quaternion.identity);
-        Destroy(this.gameObject, 2.0f);
-    }*/
 }
-        /*Instantiate(explosion, (Vector3)projectilePosition, Quaternion.identity);*/
-       /* Destroy(this.gameObject, 2.0f);
-    }
 
-    public void Inicialize(Vector2 direction, int range, int damage)
-    {
-        Debug.Log("Projectile Inicialize");
-        //isInicialized = true;
-        this.direction = direction;
-        this.range = range;
-        this.damage = damage;
-        isInicialized = true;
-    }
-}*/

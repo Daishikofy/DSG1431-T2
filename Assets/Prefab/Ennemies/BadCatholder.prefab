@@ -106,13 +106,14 @@ MonoBehaviour:
   maxMana: 0
   currentMana: 0
   manaCoolDown: 0
-  manaIsRegenarating: 0
   magicPower: 0
   physicPower: 0
   combo: 0
   currentCombo: 0
   timeFromLastAttack: 0
   comboTiming: 0
+  floatingText: {fileID: 5628849307563013060, guid: 31b4183d359582944be6f0cecf010e5f,
+    type: 3}
   stagger: 0.25
   moveSet: []
   updateLifeUI:

@@ -15,11 +15,15 @@ public abstract class Attack : ScriptableObject
     [SerializeField]
     protected int power;
     [SerializeField]
+    protected float magicFactor;
+    [SerializeField]
+    protected float fisicFactor;
+    [SerializeField]
     protected int cost;
     [SerializeField]
     protected Element element;
     [SerializeField]
-    protected float cooldDown;
+    protected float cooldDown = 0.1f;
 
     [SerializeField]
     protected GameObject attackObject;
@@ -41,9 +45,15 @@ public abstract class Attack : ScriptableObject
 
     protected void ownerThrowBack(Fighter character)
     {
+        character.AttackCoolDown(cooldDown);
         character.addMana(cost * -1);
     }
 
+    private int calculateDamage()
+    {
+        int damages = (int)(power + (character.magicPower * magicFactor) + (character.physicPower * fisicFactor));
+        return damages;
+    }
     public void giveDamage(Fighter target)
     {
         target.OnDamaged(power);
