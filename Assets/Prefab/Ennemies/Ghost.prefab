@@ -214,7 +214,7 @@ MonoBehaviour:
   currentCombo: 0
   timeFromLastAttack: 0
   comboTiming: 0
-  stagger: 0
+  stagger: 0.25
   moveSet: []
   updateLifeUI:
     m_PersistentCalls:

@@ -37,7 +37,7 @@ public class Fighter : Movable
 
     [Space]
     [SerializeField]
-    private float stagger;
+    private float stagger = 0.25f;
     private bool stagged = false;
     [Space]
     [SerializeField]

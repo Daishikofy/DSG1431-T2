@@ -100,6 +100,7 @@ MonoBehaviour:
   coolDown: 0.2
   speed: 8
   currentSpeed: 0.1
+  currentCell: {x: 0, y: 0}
   maxLife: 10
   currentLife: 0
   maxMana: 0
@@ -112,7 +113,7 @@ MonoBehaviour:
   currentCombo: 0
   timeFromLastAttack: 0
   comboTiming: 0
-  stagger: 1.5
+  stagger: 0.25
   moveSet: []
   updateLifeUI:
     m_PersistentCalls:
