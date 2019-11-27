@@ -5,15 +5,14 @@ using UnityEngine;
 public class InventoryInteractiveObject : InterfaceInteractiveObject
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        //var grid = FindObjectOfType<DynamicGrid()>;
-		//grid.plceInGrid(transform.position);
-		base.Start();
+        var grid = FindObjectOfType<DynamicGrid>();
+		grid.placeInGrid((Vector2)transform.position);
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         
     }
