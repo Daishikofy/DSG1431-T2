@@ -14,15 +14,8 @@ public class InventoryInteractiveObject : MonoBehaviour, InterfaceInteractiveObj
         var grid = FindObjectOfType<DynamicGrid>();
 		grid.placeInGrid((Vector2)transform.position, this.gameObject);
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
     public void onInteraction(Player player)
 	{
-		
+        Debug.Log("The player is interacting with me!! :D");
 	}
 }
