@@ -125,7 +125,12 @@ public class Player : Fighter
 	
 	private void interact()
 	{
-		
+        Vector2 frontCell = currentCell + direction;
+        GameObject obj = grid.getInCell(frontCell);
+        if (obj != null)
+        { 
+            obj.GetComponent<InterfaceInteractiveObject>().onInteraction(this);
+        }
 	}
 
     private void horizontal(float value)
