@@ -15,7 +15,7 @@ public class Ghost : Ennemy
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
-        animator.SetFloat("X", (float)wDirection);    
+        animator.SetFloat("X", (float)wDirection);
+        base.Update();   
     }
 }

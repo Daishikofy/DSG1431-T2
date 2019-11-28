@@ -7,7 +7,7 @@
 public class SolidInteractiveObject : MonoBehaviour, InterfaceInteractiveObject
 {
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         Debug.Log("cadastrou: " + (Vector2)transform.position);
         var grid = FindObjectOfType<DynamicGrid>();

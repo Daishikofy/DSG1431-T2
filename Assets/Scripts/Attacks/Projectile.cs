@@ -54,7 +54,7 @@ public class Projectile : Movable
 
     private void GiveDamages(GameObject target)
     {
-        Fighter ennemy = target.GetComponent<Fighter>();
+        var ennemy = target.GetComponent<IDamageable>();
         projectilController.giveDamage(ennemy);
     }
 

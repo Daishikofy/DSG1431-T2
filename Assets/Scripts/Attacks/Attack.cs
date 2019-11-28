@@ -54,7 +54,7 @@ public abstract class Attack : ScriptableObject
         int damages = (int)(power + (character.magicPower * magicFactor) + (character.physicPower * fisicFactor));
         return damages;
     }
-    public void giveDamage(Fighter target)
+    public void giveDamage(IDamageable target)
     {
         Debug.Log("Gives damages");
         int damages = calculateDamage();

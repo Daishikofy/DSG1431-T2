@@ -37,7 +37,7 @@ public class MeleeAttack : Attack
             {
                 GameObject target = grid.getInCell(affectedCells[i]);
                 if (target != null)
-                    giveDamage(target.GetComponent<Fighter>());               
+                    giveDamage(target.GetComponent<IDamageable>());               
             }
 
         }
