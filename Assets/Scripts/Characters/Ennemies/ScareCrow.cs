@@ -17,9 +17,9 @@ public class ScareCrow : Fighter
             currentLife = maxLife;
     }
 
-    public override void OnDamaged(int damage)
+    public override void OnDamaged(int damage, Element element)
     {
         GetComponent<Animator>().SetTrigger("Damaged");
-        base.OnDamaged(damage);
+        base.OnDamaged(damage, element);
     }
 }

@@ -130,7 +130,6 @@ public class Player : Fighter
         GameObject obj = grid.getInCell(frontCell);
         if (obj != null)
         {
-            Debug.Log("interactiing");
             obj.GetComponent<InterfaceInteractiveObject>().onInteraction(this);
         }
 	}

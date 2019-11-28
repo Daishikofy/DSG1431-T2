@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 
-public class Fighter : Movable
+public class Fighter : Movable, IDamageable
 {
     [Space]
     //[SerializeField]
@@ -118,7 +118,7 @@ public class Fighter : Movable
         attackCoolDown = false;
     }
 
-    public virtual void OnDamaged(int damage)
+    public virtual void OnDamaged(int damage, Element element)
     {
         Debug.Log("On damage");
         if (floatingText)
