@@ -129,7 +129,8 @@ public class Player : Fighter
         Vector2 frontCell = currentCell + direction;
         GameObject obj = grid.getInCell(frontCell);
         if (obj != null)
-        { 
+        {
+            Debug.Log("interactiing");
             obj.GetComponent<InterfaceInteractiveObject>().onInteraction(this);
         }
 	}

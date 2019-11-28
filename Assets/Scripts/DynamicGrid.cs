@@ -52,10 +52,12 @@ public class DynamicGrid : MonoBehaviour
 
     public Vector2 placeInGrid(Vector2 position, GameObject gameObject)
     {
+        position.x = (int)position.x;
+        position.y = (int)position.y;
         if (!dynamicGrid.ContainsKey(position))
         {
             dynamicGrid.Add(position, gameObject);
-            //Debug.Log("position in dynamic grid: " + position);
+            Debug.Log("position in dynamic grid: " + position + " - " + gameObject.name);
         }
         else
             Debug.LogError(gameObject.name + " - Another item is already on the grid: " + dynamicGrid[position].name);
@@ -65,6 +67,8 @@ public class DynamicGrid : MonoBehaviour
 
     public void removeFromGrid(Vector2 position)
     {
+        position.x = (int)position.x;
+        position.y = (int)position.y;
         if (dynamicGrid.ContainsKey(position))
         {
             dynamicGrid.Remove(position);
