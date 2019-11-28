@@ -7,15 +7,15 @@ using UnityEngine.Events;
 public class Fighter : Movable
 {
     [Space]
-    [SerializeField]
-    protected int maxLife;
+    //[SerializeField]
+    public int maxLife; // TODO: Put Protected again, will brak in UI manager
     [SerializeField]
     protected int currentLife;
     protected bool attackCoolDown;
 
     [Space]
-    [SerializeField]
-    protected int maxMana;
+    //[SerializeField]
+    public int maxMana; // TODO: Put Protected again, will brak in UI manager
     public int currentMana;
     [SerializeField]
     protected float manaCoolDown;

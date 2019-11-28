@@ -80,13 +80,14 @@ public class Player : Fighter
 
         if (movement.x != 0 || movement.y != 0)
         {
-            direction = movement;
+            direction = movement;           
             if (!isMoving)
             {
                 animator.SetFloat("Move X", direction.x);
                 animator.SetFloat("Move Y", direction.y);
             }
         }
+        animator.SetBool("Moving", isMoving);
         if (stop <= 0)
             goTo(movement);
         else

@@ -7,7 +7,15 @@ public class UIController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI lifePoints;
     [SerializeField]
+    Image lifeBar;
+    int maxLife;
+
+    [SerializeField]
     TextMeshProUGUI manaPoints;
+    [SerializeField]
+    Image manaBar;
+    int maxMana;
+
     [SerializeField]
     TextMeshProUGUI currentCombo;
     [SerializeField]
@@ -27,6 +35,9 @@ public class UIController : MonoBehaviour
         controller.Player.PrepAttack.Enable();
         controller.Player.PrepAttack.performed += context => showPowerPanel();
         setIcons();
+        Player player = FindObjectOfType<Player>();
+        maxLife = player.maxLife;
+        maxMana = player.maxMana;
     }
 
     private void setIcons()
@@ -50,12 +61,14 @@ public class UIController : MonoBehaviour
     }
     public void updateLifePoints(int life)
     {
-        lifePoints.text = ("LIFE: " + life.ToString());
+        lifePoints.text = life.ToString();
+        lifeBar.fillAmount = (float)life / (float)maxLife;
     }
 
     public void updateMana(int mana)
     {
         manaPoints.text = ("MANA: " + mana.ToString());
+        manaBar.fillAmount = (float)mana / (float)maxMana;
     }
 
     public void updateCombo(int combo)
