@@ -15,6 +15,6 @@ public class SolidInteractiveObject : MonoBehaviour, InterfaceInteractiveObject
     }
     public virtual void onInteraction(Player player)
     {
-        Debug.Log("Solid object");
+        Debug.Log("Solid object: " + gameObject.name);
     }
 }

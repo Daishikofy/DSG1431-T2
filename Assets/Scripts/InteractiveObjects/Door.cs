@@ -5,14 +5,24 @@ using UnityEngine;
 public class Door : SolidInteractiveObject
 {
     SpriteRenderer renderer;
+    [SerializeField]
+    string keyName = "None";
+
+    bool opening = false;
     public override void onInteraction(Player player)
     {
+        if (opening) return;
         base.onInteraction(player);
-        StartCoroutine("fadeOut");
+        if (keyName == "None" || player.inventory.containsItem(keyName))
+        {
+            player.inventory.removeItem(keyName);
+            StartCoroutine("fadeOut");
+        }
     }
 
     protected IEnumerator fadeOut()
     {
+        opening = true;
         float time = 1f;
         renderer = GetComponent<SpriteRenderer>();
         Color aux = new Color();

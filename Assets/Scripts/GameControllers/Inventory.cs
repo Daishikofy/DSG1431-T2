@@ -6,6 +6,10 @@ public class Inventory : MonoBehaviour
 {
     private List<string> itens;
 
+    private void Start()
+    {
+        itens = new List<string>(); 
+    }
     public void addItem(string item)
     {
         itens.Add(item);

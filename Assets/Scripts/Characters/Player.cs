@@ -11,7 +11,7 @@ public class Player : Fighter
     private int lastAttack;   
     private CatsInput controller;
     private int stop = 0;
-    private Inventory inventory;
+    public Inventory inventory;
 
     [SerializeField]
     private float rechargeTime = 10.0f;
@@ -159,6 +159,6 @@ public class Player : Fighter
 
     public void addToInventory(string name)
     {
-        Debug.Log("You got a " + name);
+        inventory.addItem(name);
     }
 }
