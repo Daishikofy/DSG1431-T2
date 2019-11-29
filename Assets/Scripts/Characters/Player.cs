@@ -11,11 +11,13 @@ public class Player : Fighter
     private int lastAttack;   
     private CatsInput controller;
     private int stop = 0;
+    private Inventory inventory;
 
     [SerializeField]
     private float rechargeTime = 10.0f;
     private void Awake()
     {
+        inventory = FindObjectOfType<Inventory>();
         controller = new CatsInput();
         controller.Player.Enable();
         controller.Player.X.performed += context => horizontal(context.ReadValue<float>());
