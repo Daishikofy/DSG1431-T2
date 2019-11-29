@@ -114,7 +114,6 @@ public class Player : Fighter
     }
     private void useAttackB()
     {
-        Debug.Log("attack:" + moveSet[1].name);
         lastAttack = 1;
     }
     private void useAttackX()

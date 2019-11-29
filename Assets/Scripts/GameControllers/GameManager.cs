@@ -64,8 +64,9 @@ using UnityEngine.UI;
         //GetComponent<DynamicGrid>().placeInGrid(Vector2.zero,player.gameObject);
     }
 
-    IEnumerator fadeOut()
+    public IEnumerator fadeOut()
     {
+        transition.color = Color.black;
         while (transition.color.a > 0)
         {
             Color color = transition.color;
@@ -75,7 +76,7 @@ using UnityEngine.UI;
         }
     }
 
-    IEnumerator fadeIn()
+    public IEnumerator fadeIn()
     {
         while (transition.color.a < 0)
         {

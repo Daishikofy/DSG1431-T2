@@ -15,4 +15,10 @@ public class Puzzles : MonoBehaviour
         Instantiate(reward, aux, Quaternion.identity);
         puzzleSolved = true;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(rewardSpawnPoint, 0.1f);
+    }
 }

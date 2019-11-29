@@ -56,7 +56,6 @@ public abstract class Attack : ScriptableObject
     }
     public void giveDamage(IDamageable target)
     {
-        Debug.Log("Gives damages");
         int damages = calculateDamage();
         target.OnDamaged(damages, element);
         character.addCombo();

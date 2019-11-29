@@ -8,17 +8,6 @@ public class Exit : MonoBehaviour
     private int levelIndex = -1; //TODO: ComboBox with scenes name?
     [SerializeField]
     private Vector2 position;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     //TODO : Re implement part in the player's script in a goThroughDoor function
     //Add a fade in fade out
@@ -36,9 +25,11 @@ public class Exit : MonoBehaviour
 
     private void enterDoor(Player character)
     {
+        var manager = FindObjectOfType<GameManager>();
         //If the exit is in the same scene
         if (levelIndex == -1)
         {
+            StartCoroutine(manager.fadeOut());
             FindObjectOfType<DynamicGrid>().moveInGrid(character.currentCell, position);
             character.currentCell = position;
             character.transform.position = position;
@@ -46,7 +37,7 @@ public class Exit : MonoBehaviour
         //TODO: Study if it would be more eficiente for the dynamicGrid to be static
         else
         {
-            FindObjectOfType<GameManager>().changeLevel(levelIndex);
+            manager.changeLevel(levelIndex);
             character.changeLevel(position);
         }
     }

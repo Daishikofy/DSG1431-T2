@@ -18,7 +18,7 @@ MonoBehaviour:
   magicFactor: 0
   fisicFactor: 0
   cost: 3
-  element: 0
+  element: 1
   cooldDown: 0.1
   attackObject: {fileID: 0}
   damageZone:

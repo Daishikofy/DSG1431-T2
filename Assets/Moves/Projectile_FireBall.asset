@@ -18,7 +18,7 @@ MonoBehaviour:
   magicFactor: 0
   fisicFactor: 0
   cost: 5
-  element: 0
+  element: 1
   cooldDown: 0.1
   attackObject: {fileID: 3367751495916030611, guid: 263ace4327e749248b763b5c956fe3c0,
     type: 3}

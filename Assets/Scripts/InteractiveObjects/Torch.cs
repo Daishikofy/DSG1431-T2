@@ -15,7 +15,13 @@ public class Torch : SolidInteractiveObject, IDamageable
     {
         animator = GetComponent<Animator>();
         if (!isActivated)
-            GetComponent<SpriteRenderer>().color = Color.blue;
+        {
+            if (animator == null)
+                GetComponent<SpriteRenderer>().color = Color.blue;
+            else
+                animator.SetBool("Activated", false);
+        }
+
         base.Start();
     }
 
@@ -23,23 +29,32 @@ public class Torch : SolidInteractiveObject, IDamageable
     {
         if (this.element == Element.None || this.element == element)
         {
-            if (!isActivated)
-                isActivated = true;
-            stateChanged.Invoke();
-            if (animator)
-                animator.SetBool("Activated", isActivated);
-            else
-                GetComponent<SpriteRenderer>().color = Color.red;
+            activate(true);
         }
     }
 
-    public void setState(bool active)
+    public void setState(bool value)
     {
-        isActivated = active;
+        activate(value);
+    }
+
+    private void activate(bool value)
+    {
+        if (value && !isActivated)
+        {
+            isActivated = true;
+            stateChanged.Invoke();
+        }
+        else
+            isActivated = value;
+
         if (animator)
             animator.SetBool("Activated", isActivated);
         else
-            GetComponent<SpriteRenderer>().color = Color.red;
+            if (isActivated)
+                GetComponent<SpriteRenderer>().color = Color.red;
+            else
+                GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
 }
