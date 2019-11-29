@@ -154,4 +154,9 @@ public class Player : Fighter
         this.movement.x = (int)movement.x;
         this.movement.y = (int)movement.y;
     }
+
+    public void addToInventory(string name)
+    {
+        Debug.Log("You got a " + name);
+    }
 }
