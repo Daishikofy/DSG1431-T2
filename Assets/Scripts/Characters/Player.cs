@@ -120,6 +120,8 @@ public class Player : Fighter
     private void useAttackX()
     {
         lastAttack = 2;
+		this.setMana(0);
+		this.setLife(this.maxLife);
     }
     private void useAttackY()
     {
