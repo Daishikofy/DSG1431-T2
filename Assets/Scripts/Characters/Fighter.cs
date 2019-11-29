@@ -153,7 +153,13 @@ public class Fighter : Movable, IDamageable
     public void setMana(int mana)
     {
         currentMana = mana;
-        updateManaUI.Invoke(mana);
+
+        if (currentMana> maxMana)
+            currentMana = maxMana;
+        else if (currentMana < 0)
+            currentMana = 0;
+
+        updateManaUI.Invoke(currentMana);
     }
 
     public void addLife(int life)
@@ -163,7 +169,13 @@ public class Fighter : Movable, IDamageable
     public void setLife(int life)
     {
         currentLife = life;
-        updateLifeUI.Invoke(life);
+
+        if (currentLife > maxLife)
+            currentLife = maxLife;
+        else if (currentLife < 0)
+            currentLife = 0;
+
+        updateLifeUI.Invoke(currentLife);
     }
     public void addCombo()
     {
