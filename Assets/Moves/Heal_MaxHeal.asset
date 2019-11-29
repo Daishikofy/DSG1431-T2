@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8c4e796fb654144825d8298ba5cebb, type: 3}
   m_Name: Heal_MaxHeal
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  movesName: 
-  power: 0
+  icon: {fileID: 4434460537572490471, guid: 534cbda440e4221419955a054c799554, type: 3}
+  movesName: Mac Heal
+  power: 100
   magicFactor: 0
   fisicFactor: 0
-  cost: 0
-  element: 0
-  cooldDown: 0.1
+  cost: 100
+  element: 2
+  cooldDown: 1
   attackObject: {fileID: 0}
-  cost: 0
-  power: 0

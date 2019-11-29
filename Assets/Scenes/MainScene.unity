@@ -1565,6 +1565,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cdeacf5e7b6d774f978f25edbba4785, type: 2}
   - {fileID: 11400000, guid: abd3909e91794d14da2f88563f6c584b, type: 2}
   - {fileID: 11400000, guid: 272146fcab05e9b419fc1ce9297cfeb5, type: 2}
+  - {fileID: 11400000, guid: c18aef8776972a743b8e2342efcf839f, type: 2}
   updateLifeUI:
     m_PersistentCalls:
       m_Calls:
