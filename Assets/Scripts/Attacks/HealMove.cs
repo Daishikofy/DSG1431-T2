@@ -8,6 +8,7 @@ public class HealMove : Attack
     public override void use(Fighter character)
     {
         base.use(character);
-        character.addLife(power);
+        Instantiate(attackObject, (Vector3)character.currentCell, Quaternion.identity);
+        character.addLife(power);     
     }
 }

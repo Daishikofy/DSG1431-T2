@@ -4,29 +4,37 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    [Space]//Life
     [SerializeField]
     TextMeshProUGUI lifePoints;
     [SerializeField]
     Image lifeBar;
     int maxLife;
 
+    [Space]//Mana
     [SerializeField]
     TextMeshProUGUI manaPoints;
     [SerializeField]
     Image manaBar;
     int maxMana;
 
+    [Space]//Combo
     [SerializeField]
     TextMeshProUGUI currentCombo;
     [SerializeField]
     Image powerPanel;
     bool powerPanelActivated = false;
 
+    [Space]//Powers panel
     [SerializeField]
     Sprite defaultIcon;
     [SerializeField]
     Image[] powerImages;
     private CatsInput controller;
+
+    [Space]//Pause menu
+    [SerializeField]
+    GameObject pausedMenu;
 
     // Start is called before the first frame update
     private void Start()
@@ -38,6 +46,8 @@ public class UIController : MonoBehaviour
         Player player = FindObjectOfType<Player>();
         maxLife = player.maxLife;
         maxMana = player.maxMana;
+
+        pausedMenu.SetActive(false);
     }
 
     private void setIcons()
@@ -67,7 +77,7 @@ public class UIController : MonoBehaviour
 
     public void updateMana(int mana)
     {
-        manaPoints.text = ("MANA: " + mana.ToString());
+        manaPoints.text = mana.ToString();
         manaBar.fillAmount = (float)mana / (float)maxMana;
     }
 

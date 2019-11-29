@@ -20,4 +20,5 @@ MonoBehaviour:
   cost: 100
   element: 2
   cooldDown: 1
-  attackObject: {fileID: 0}
+  attackObject: {fileID: 4152545109152992322, guid: 1301dd8f05078b0419762de1d1380e91,
+    type: 3}

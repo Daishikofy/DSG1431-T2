@@ -216,7 +216,8 @@ MonoBehaviour:
   floatingText: {fileID: 5628849307563013060, guid: 31b4183d359582944be6f0cecf010e5f,
     type: 3}
   stagger: 0.25
-  moveSet: []
+  moveSet:
+  - {fileID: 11400000, guid: db63267760ebd304fbc6db23fa5ca233, type: 2}
   updateLifeUI:
     m_PersistentCalls:
       m_Calls: []
