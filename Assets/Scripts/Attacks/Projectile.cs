@@ -17,6 +17,7 @@ public class Projectile : Movable
     public void Inicialize(Vector2 direction, int range, int power, ProjectileAttack projectilController)
     {
         currentSpeed = speed;
+        currentCell = this.transform.position;
         grid = FindObjectOfType<DynamicGrid>();
         this.direction = direction;
         this.damage = power;
@@ -26,20 +27,20 @@ public class Projectile : Movable
     private void Update()
     {
         if (isMoving) return;
-        bool cellIsEmpty = grid.cellIsEmpty(this.transform.position);
+        bool cellIsEmpty = grid.cellIsEmpty(this.currentCell);
         if (range > 0 && cellIsEmpty)
         {
             Vector2 startCell = transform.position;
             Vector2 targetCell = startCell + direction;
             StartCoroutine(SmoothMovement(targetCell));
-
+            currentCell = targetCell;
             range--;
         }
         else
         {
             if (!cellIsEmpty)
             {
-                GameObject target = grid.getInCell(this.transform.position);
+                GameObject target = grid.getInCell(currentCell);
                 if (target != null)
                 {
                     Debug.Log("bam");
@@ -56,6 +57,11 @@ public class Projectile : Movable
     {
         var ennemy = target.GetComponent<IDamageable>();
         projectilController.giveDamage(ennemy);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(currentCell, 0.1f);
     }
 
 }
