@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1260479255}
   transition: {fileID: 1297887190}
-  firstSceneIndex: 2
+  firstSceneIndex: 1
 --- !u!114 &216952610
 MonoBehaviour:
   m_ObjectHideFlags: 0
