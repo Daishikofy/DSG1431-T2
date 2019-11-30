@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2929423720645263092}
   - component: {fileID: 2929423720645263099}
   - component: {fileID: 2929423720645263093}
+  - component: {fileID: 4918977938617629755}
   m_Layer: 0
   m_Name: BadCatholder
   m_TagString: Ennemy
@@ -128,3 +129,29 @@ MonoBehaviour:
   minMax: {x: -2, y: 2}
   axe: 120
   markedTime: 2
+--- !u!114 &4918977938617629755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929423720645263097}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdadfc07c532684fb6d99fdacc68f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMoving: 0
+  onCooldown: 0
+  onExit: 0
+  coolDown: 0.2
+  speed: 8
+  currentSpeed: 0.1
+  currentCell: {x: 0, y: 0}
+  AttackRange: 1
+  SeekRange: 10
+  PatrolWalkDistance: {x: 1, y: 1}
+  PatrolStartPosition: {x: 3, y: 3}
+  BaseLeft: {x: 0, y: 0}
+  TopRight: {x: 10, y: 10}
+  startDirection: 0

@@ -17,6 +17,8 @@ public class Ennemy : Fighter
     private SpriteRenderer renderer;
     protected int wDirection;
     private Color color;
+
+
     // Use this for initialization
     protected override void Start()
     {
@@ -24,6 +26,7 @@ public class Ennemy : Fighter
         renderer = GetComponent<SpriteRenderer>();
         color = renderer.color;
         timer = markedTime * 60;
+
         base.Start();
     }
 
@@ -37,7 +40,7 @@ public class Ennemy : Fighter
                 wDirection = -1;
             else if (gameObject.transform.position.x < minMax.x)
                 wDirection = 1;
-            goTo(Vector2.right * wDirection);
+            //goTo(Vector2.right * wDirection);
         }
         else
         {
@@ -45,7 +48,7 @@ public class Ennemy : Fighter
                 wDirection = -1;
             else if (gameObject.transform.position.y < minMax.x)
                 wDirection = 1;
-            goTo(Vector2.up * wDirection);
+           // goTo(Vector2.up * wDirection);
         }
     }
     

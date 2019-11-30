@@ -15,10 +15,10 @@ public class PathFinding
     private MovementState State;
 
     private Point BaseLeftPos;
-    private Point currentPos;
-    private Point currentRealPos;
-    private Point playerPos;
-    private Point playerRealPos;
+    private Point CurrentPos;
+    private Point CurrentRealPos;
+    private Point PlayerPos;
+    private Point PlayerRealPos;
 
     private Point PatrolStartPosition;
     private Point PatrolWalkDistance;
@@ -51,10 +51,10 @@ public class PathFinding
 
     public Point DefineDirection(DynamicGrid grid, Point currentPos, Point playerPos)
     {
-        this.currentRealPos = currentPos;
-        this.playerRealPos = playerPos;
-        this.currentPos = new Point(currentPos.X - BaseLeftPos.X, currentPos.Y - BaseLeftPos.Y);
-        this.playerPos = new Point(playerPos.X - BaseLeftPos.X, playerPos.Y - BaseLeftPos.Y);
+        CurrentRealPos = currentPos;
+        PlayerRealPos = playerPos;
+        CurrentPos = new Point(currentPos.X - BaseLeftPos.X, currentPos.Y - BaseLeftPos.Y);
+        PlayerPos = new Point(playerPos.X - BaseLeftPos.X, playerPos.Y - BaseLeftPos.Y);
 
         SetState();
 
@@ -77,12 +77,12 @@ public class PathFinding
 
             Point destination;
             if (State == MovementState.Seek)
-                destination = playerPos;
+                destination = PlayerPos;
             else if (State == MovementState.Return)
                 destination = PatrolStartPosition;
 
 
-            direction = TwoWayMovement(currentPos, destination);
+            direction = TwoWayMovement(CurrentPos, destination);
             if (PointIsZero(direction))
                 direction = AStar();
 
@@ -104,8 +104,8 @@ public class PathFinding
                 Node node = new Node()
                 {
                     ParentNode = null,
-                    G = Math.Abs(currentPos.X - i) + Math.Abs(currentPos.Y - j),
-                    H = Math.Abs(this.playerPos.X - i) + Math.Abs(this.playerPos.Y - j),
+                    G = Math.Abs(CurrentPos.X - i) + Math.Abs(CurrentPos.Y - j),
+                    H = Math.Abs(this.PlayerPos.X - i) + Math.Abs(this.PlayerPos.Y - j),
                     State = NodeState.Open,
                     Location = new Point(i, j),
                     RealLocation = realLocation,
@@ -120,9 +120,11 @@ public class PathFinding
 
     private void SetState()
     {
-        var distanceX = Math.Abs(currentPos.X - playerPos.X);
-        var distanceY = Math.Abs(currentPos.Y - playerPos.Y);
+        var distanceX = Math.Abs(CurrentPos.X - PlayerPos.X);
+        var distanceY = Math.Abs(CurrentPos.Y - PlayerPos.Y);
 
+        if(PlayerPos.X >= tamGridX || PlayerPos.X < 0 || PlayerPos.Y >= tamGridY || PlayerPos.Y < 0)
+            State = MovementState.Patrol;
         if (distanceX > SeekRange || distanceY > SeekRange)
             State = MovementState.Patrol;
         else if (distanceX > AttackRange || distanceY > AttackRange)
@@ -198,17 +200,18 @@ public class PathFinding
 
         int movement = curPosInAxys > destinationPosInAxys ? -1 : 1;
 
-        while (curPosInAxys != destinationPosInAxys)
+        do
         {
             bool isWalkable;
+            curPosInAxys += movement;
             if (moveInX)
                 isWalkable = NodesGrid[curPosInAxys][startPos.Y].IsWalkable;
             else
                 isWalkable = NodesGrid[startPos.X][curPosInAxys].IsWalkable;
 
             if (!isWalkable)
-                return new Point(0,0);
-        }
+                return new Point(0, 0);
+        } while (curPosInAxys + movement != destinationPosInAxys);
 
         if (moveInX)
             return new Point(movement, 0);
@@ -227,11 +230,11 @@ public class PathFinding
 
     public Point AStar()
     {        
-        Node currentNode = NodesGrid[currentPos.X][currentPos.Y];
+        Node currentNode = NodesGrid[CurrentPos.X][CurrentPos.Y];
         if (Search(currentNode))
         {
             Point nextTile = Path.FirstOrDefault().Location;
-            var direction = new Point(nextTile.X - currentPos.X, nextTile.Y - currentPos.Y);
+            var direction = new Point(nextTile.X - CurrentPos.X, nextTile.Y - CurrentPos.Y);
             return direction;
         }
         else
@@ -243,7 +246,7 @@ public class PathFinding
         Path = new List<Node>();
         Node node = finalNode;
 
-        while(node.Location.X != currentPos.X && node.Location.Y != currentPos.Y)
+        while(node.Location.X != CurrentPos.X && node.Location.Y != CurrentPos.Y)
         {
             Path.Add(node);
             node = node.ParentNode;
@@ -259,7 +262,7 @@ public class PathFinding
         nextNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
         foreach (var nextNode in nextNodes)
         {
-            if (nextNode.Location == playerPos)
+            if (nextNode.Location == PlayerPos)
             {
                 GeraPath(nextNode);
                 return true;
@@ -329,18 +332,18 @@ public class PathFinding
 
         if (moveEixoX)
         {
-            destination = new Point(currentPos.X - playerPos.X, currentPos.Y);
-            secondaryDestination = new Point(currentPos.X, currentPos.Y - playerPos.Y);
+            destination = new Point(CurrentPos.X - PlayerPos.X, CurrentPos.Y);
+            secondaryDestination = new Point(CurrentPos.X, CurrentPos.Y - PlayerPos.Y);
         }
         else
         {
-            destination = new Point(currentPos.X, currentPos.Y - playerPos.Y);
-            secondaryDestination = new Point(currentPos.X - playerPos.X, currentPos.Y);
+            destination = new Point(CurrentPos.X, CurrentPos.Y - PlayerPos.Y);
+            secondaryDestination = new Point(CurrentPos.X - PlayerPos.X, CurrentPos.Y);
         }
 
-        Point direction = StraightLineMovement(currentPos, destination, moveEixoX);
+        Point direction = StraightLineMovement(CurrentPos, destination, moveEixoX);
         if (PointIsZero(direction))
-            direction = StraightLineMovement(currentPos, secondaryDestination, !moveEixoX);
+            direction = StraightLineMovement(CurrentPos, secondaryDestination, !moveEixoX);
 
         return direction;
     }

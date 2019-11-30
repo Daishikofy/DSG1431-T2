@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8850676275895348130}
   - component: {fileID: 8850676275895348129}
   - component: {fileID: 8850676275895348131}
+  - component: {fileID: -8917829598590712075}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -230,3 +231,29 @@ MonoBehaviour:
   minMax: {x: -5, y: -1}
   axe: 120
   markedTime: 0
+--- !u!114 &-8917829598590712075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850676275895348159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdadfc07c532684fb6d99fdacc68f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMoving: 0
+  onCooldown: 0
+  onExit: 0
+  coolDown: 0
+  speed: 0
+  currentSpeed: 0
+  currentCell: {x: 0, y: 0}
+  AttackRange: 1
+  SeekRange: 2
+  PatrolWalkDistance: {x: 1, y: 1}
+  PatrolStartPosition: {x: 2, y: 1}
+  BaseLeft: {x: -5, y: -1}
+  TopRight: {x: 0, y: 2}
+  startDirection: 0
