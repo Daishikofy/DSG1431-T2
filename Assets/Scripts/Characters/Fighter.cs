@@ -58,7 +58,7 @@ public class Fighter : Movable, IDamageable
     protected Vector2Int direction;
     protected Vector2Int movement;
 
-    private bool isKo = false;
+    protected bool isKo = false;
 
     // Start is called before the first frame update
     protected override void Start()

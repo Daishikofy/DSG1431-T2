@@ -30,6 +30,7 @@ public class Ennemy : Fighter
     // Update is called once per frame
     protected override void Update()
     {
+        if (isKo) return;
         base.Update();
         Fighter obj;
         if (axe == 'x')

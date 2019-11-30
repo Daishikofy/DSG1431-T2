@@ -82,7 +82,8 @@ public class Movable : MonoBehaviour
 
         if (!isMoving)
             StartCoroutine(BlockedMovement(targetCell));
-
+        if (res == null)
+            return null;
         return res.GetComponent<Fighter>();
     }
 

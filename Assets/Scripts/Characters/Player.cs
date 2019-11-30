@@ -42,6 +42,7 @@ public class Player : Fighter
     // Update is called once per frame
     void Update()
     {
+        if (isKo) return;
         base.Update();
         if (timeFromLastAttack <= rechargeTime + 1)
             timeFromLastAttack += Time.deltaTime;
