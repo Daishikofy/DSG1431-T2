@@ -31,13 +31,14 @@ public class Ennemy : Fighter
     protected override void Update()
     {
         base.Update();
+        Fighter obj;
         if (axe == 'x')
         {
             if (gameObject.transform.position.x > minMax.y)
                 wDirection = -1;
             else if (gameObject.transform.position.x < minMax.x)
                 wDirection = 1;
-            goTo(Vector2.right * wDirection);
+            obj = goTo(Vector2.right * wDirection);
         }
         else
         {
@@ -45,8 +46,10 @@ public class Ennemy : Fighter
                 wDirection = -1;
             else if (gameObject.transform.position.y < minMax.x)
                 wDirection = 1;
-            goTo(Vector2.up * wDirection);
+            obj = goTo(Vector2.up * wDirection);
         }
+        if (obj != null && obj.CompareTag("Player"))
+            obj.OnDamaged(1, Element.None);
     }
     
     private void FixedUpdate()

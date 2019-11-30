@@ -94,8 +94,14 @@ public class Player : Fighter
             }
         }
         animator.SetBool("Moving", isMoving);
+        
         if (stop <= 0)
-            goTo(movement);
+        {
+            Fighter obj;
+            obj = goTo(movement);
+            if (obj != null && obj.CompareTag("Ennemy"))
+                OnDamaged(1, Element.None);
+        }
         else
             stop--;
     }
