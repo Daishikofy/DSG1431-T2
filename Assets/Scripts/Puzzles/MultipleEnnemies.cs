@@ -11,7 +11,7 @@ public class MultipleEnnemies : Puzzles
     {
         for (int i = 0; i < ennemies.Length; i++)
         {
-            if (ennemies[i] != null)
+            if (ennemies[i].isActiveAndEnabled)
                 return;
         }
         completed();

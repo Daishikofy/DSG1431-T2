@@ -59,6 +59,8 @@ public class Fighter : Movable, IDamageable
     protected Vector2Int movement;
 
     protected bool isKo = false;
+    [HideInInspector]
+    public UnityEvent Ko;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -128,7 +130,7 @@ public class Fighter : Movable, IDamageable
         stagged = true;
     }
 
-    private void KnockOut()
+    protected virtual void KnockOut()
     {
         setLife(0);
         isKo = true;
@@ -137,8 +139,8 @@ public class Fighter : Movable, IDamageable
         //TODO - Animator: deathAnimation
         Debug.Log("Knock out: " + this.gameObject.name);
         grid.removeFromGrid(currentCell);
-        Destroy(this.gameObject, 1.0f);
-        //IMPORTANT!! REMOVE THIS LINE ABOVE
+        Ko.Invoke();
+        this.gameObject.SetActive(false);
     }
 
     public Vector2 getDirection()

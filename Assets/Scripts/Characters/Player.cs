@@ -119,7 +119,12 @@ public class Player : Fighter
         stop = frames;
     }
 
-    private void useAttackA()
+    protected void KnockOut()
+    {
+        Debug.Log("Player KnockOut");
+    }
+
+        private void useAttackA()
     {
         lastAttack = 0;
     }

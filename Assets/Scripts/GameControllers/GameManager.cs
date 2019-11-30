@@ -12,6 +12,8 @@ using UnityEngine.UI;
     private Image transition;
     [SerializeField]
     private int firstSceneIndex = 2;
+    [SerializeField]
+    private Image gameOverPanel;
 
     private int loadedLevelBuildIndex = 0;
     void Start()
@@ -26,6 +28,8 @@ using UnityEngine.UI;
         }
         else
             StartCoroutine(LoadLevel(firstSceneIndex));
+        gameOverPanel.gameObject.SetActive(false);
+        player.Ko.AddListener(gameOver);
     }
 
     public void changeLevel(int levelIndex)
@@ -88,12 +92,13 @@ using UnityEngine.UI;
     }
     private void enableGame(bool value)
     {
-        /*if(value)
-            StartCoroutine("fadeOut");
-        else
-            StartCoroutine("fadeIn");*/
         player.enabled = value;
         enabled = value;
+    }
+
+    private void gameOver()
+    {
+        gameOverPanel.gameObject.SetActive(true);
     }
 
 }
