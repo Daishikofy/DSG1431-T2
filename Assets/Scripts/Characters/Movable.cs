@@ -36,10 +36,10 @@ public class Movable : MonoBehaviour
             currentCell = grid.placeInGrid(this.transform.position, this.gameObject);
     }
 
-    protected void goTo(Vector2 movement)
+    protected Fighter goTo(Vector2 movement)
     {
         //We do nothing if the player is still moving.
-        if (isMoving || onCooldown || onExit) return;
+        if (isMoving || onCooldown || onExit) return null;
 
         //We can't go in both directions at the same time
 
@@ -51,15 +51,17 @@ public class Movable : MonoBehaviour
         if (movement.x != 0 || movement.y != 0)
         {
             StartCoroutine(actionCooldown(coolDown));
-            currentCell = Move(movement);
+            Fighter blockingCharacter = Move(movement);
+            return blockingCharacter;
         }
+        return null;
     }
 
-    private Vector2 Move(Vector2 movement)
+    private Fighter Move(Vector2 movement)
     {
         Vector2 startCell = transform.position;
         Vector2 targetCell = startCell + movement;
-        Vector2 res;
+        GameObject res;
         //If the front tile is a walkable ground tile, the player moves here.
         if (grid.cellIsEmpty(targetCell))
         {
@@ -68,18 +70,20 @@ public class Movable : MonoBehaviour
             //não queremos necessariamente adicionar este sprites no grid dinàmico.
             grid.moveInGrid(startCell, targetCell);
             StartCoroutine(SmoothMovement(targetCell));
-            res = targetCell;
+            currentCell = targetCell;
+            res = null;
         }
         else
         {
             StartCoroutine(BlockedMovement(targetCell));
-            res = startCell;
+            currentCell = startCell;
+            res = grid.getInCell(targetCell);
         }
 
         if (!isMoving)
             StartCoroutine(BlockedMovement(targetCell));
 
-        return res;
+        return res.GetComponent<Fighter>();
     }
 
     protected IEnumerator SmoothMovement(Vector3 end)
