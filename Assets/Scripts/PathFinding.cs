@@ -308,11 +308,11 @@ public class PathFinding
 
         if (locationX + 1 < tamGridX)
             adjacentNodes.Add(NodesGrid[locationX + 1][locationY].Location);
-        if (locationX - 1 > 0)
+        if (locationX - 1 >= 0)
             adjacentNodes.Add(NodesGrid[locationX - 1][locationY].Location);
         if (locationY + 1 < tamGridY)
             adjacentNodes.Add(NodesGrid[locationX][locationY + 1].Location);
-        if (locationY - 1 > tamGridY)
+        if (locationY - 1 >= 0)
             adjacentNodes.Add(NodesGrid[locationX][locationY - 1].Location);
 
 
