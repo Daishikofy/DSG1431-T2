@@ -11,7 +11,9 @@ public class Player : Fighter
     private int lastAttack;   
     private CatsInput controller;
     private int stop = 0;
+    [HideInInspector]
     public Inventory inventory;
+    private bool changeDirection = false;
 
     [SerializeField]
     private float rechargeTime = 10.0f;
@@ -27,6 +29,8 @@ public class Player : Fighter
         controller.Player.AttackX.performed += context => useAttackX();
         controller.Player.AttackY.performed += context => useAttackY();
 		controller.Player.Interact.performed += context => interact();
+        controller.Player.PrepAttack.performed += context => prepAttack();
+        controller.Player.Interact.performed += context => interact();
     }
     protected override void Start()
     {
@@ -139,21 +143,47 @@ public class Player : Fighter
     {
         if (value == 0 && movement.y != 0)
             return;
-        this.movement.x = (int)value;
-        this.movement.y = 0;
+
+        if (changeDirection && value != 0)
+        {
+            this.direction.x = (int)value;
+            this.direction.y = 0;
+            animator.SetFloat("Move X", direction.x);
+            animator.SetFloat("Move Y", direction.y);
+        }
+        else
+        {
+            this.movement.x = (int)value;
+            this.movement.y = 0;
+        }
     }
 
     private void vertical (float value)
     {
         if (value == 0 && movement.x != 0)
             return;
-        this.movement.x = 0;
-        this.movement.y = (int)value;
+        if (changeDirection && value != 0)
+        {
+            this.direction.x = 0;
+            this.direction.y = (int)value;
+            animator.SetFloat("Move X", direction.x);
+            animator.SetFloat("Move Y", direction.y);
+        }
+        else
+        {
+            this.movement.x = 0;
+            this.movement.y = (int)value;
+        }
     }
     private void walk(Vector2 movement)
     {
         this.movement.x = (int)movement.x;
         this.movement.y = (int)movement.y;
+    }
+
+    private void prepAttack()
+    {
+        changeDirection = !changeDirection;
     }
 
     public void addToInventory(string name)
