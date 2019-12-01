@@ -12,13 +12,14 @@ public class PathFinding
 
     public int AttackRange;
     public int SeekRange;
-    private MovementState State;
+    public MovementState State;
 
     private Point BaseLeftPos;
     private Point CurrentPos;
     private Point CurrentRealPos;
     private Point PlayerPos;
     private Point PlayerRealPos;
+    private Point LastPlayerPos;
 
     private Point PatrolStartPosition;
     private Point PatrolWalkDistance;
@@ -30,6 +31,7 @@ public class PathFinding
 
     private IList<IList<Node>> NodesGrid;
     private IList<Node> Path;
+    private bool followingAStar = false;
 
     private System.Random Rand;
 
@@ -39,12 +41,13 @@ public class PathFinding
         SeekRange = seekRange;
         State = MovementState.Patrol;
 
-        PatrolStartPosition = patrolStartPosition;
+        BaseLeftPos = baseLeft;
+
+        PatrolStartPosition = new Point(patrolStartPosition.X - BaseLeftPos.X, patrolStartPosition.Y - BaseLeftPos.Y);
         PatrolWalkDistance = patrolWalkDistance;
         PatrolStartDirection = startDirection;
         PatrolCurrentDirection = startDirection;
 
-        BaseLeftPos = baseLeft;
         tamGridX = Math.Abs(baseLeft.X - topRight.X) + 1;
         tamGridY = Math.Abs(baseLeft.Y - topRight.Y) + 1;
         
@@ -53,6 +56,10 @@ public class PathFinding
 
     public Point DefineDirection(DynamicGrid grid, Point currentPos, Point playerPos)
     {
+        var lastPlayerPos = PlayerPos;
+        var lastState = State;
+        bool wasChassingPlayer = State == MovementState.MoveAttackPosition || State == MovementState.Seek;
+
         CurrentRealPos = currentPos;
         PlayerRealPos = playerPos;
         CurrentPos = new Point(currentPos.X - BaseLeftPos.X, currentPos.Y - BaseLeftPos.Y);
@@ -60,8 +67,21 @@ public class PathFinding
 
         SetState();
 
+        bool isChassingPlayer = State == MovementState.MoveAttackPosition || State == MovementState.Seek;
+
+        if (followingAStar &&
+            ((wasChassingPlayer && isChassingPlayer && lastPlayerPos.X == PlayerPos.X && lastPlayerPos.Y == PlayerPos.Y)
+            || (State == MovementState.Return && lastState == MovementState.Return)))
+        {
+            var direction = ContinuePath();
+            if (!PointIsInvalid(direction))
+                return direction;
+        }
+
+        followingAStar = false;
+
         if (State == MovementState.Attack)
-            return new Point(0,0);
+            return AttackPosition();
         else if (State == MovementState.Patrol)
             return PatrolMovement();
         else
@@ -71,17 +91,24 @@ public class PathFinding
             if (State == MovementState.Seek || State == MovementState.MoveAttackPosition)
                 destination = PlayerPos;
             else// if (State == MovementState.Return)
+            {
                 destination = PatrolStartPosition;
+                PatrolCurrentDirection = PatrolStartDirection;
+            }
 
             InstantiateGrid(grid, destination);
-            
+
             if (State == MovementState.MoveAttackPosition)
                 direction = MoveToAttackPosition();
             else
                 direction = TwoWayMovement(CurrentPos, destination);
 
-            if (PointIsZero(direction))
+            if (PointIsInvalid(direction))
+            {
                 direction = AStar(destination);
+                if(!PointIsInvalid(direction))
+                    followingAStar = true;
+            }
 
             return direction;
         }
@@ -120,16 +147,29 @@ public class PathFinding
         var distanceX = Math.Abs(CurrentPos.X - PlayerPos.X);
         var distanceY = Math.Abs(CurrentPos.Y - PlayerPos.Y);
 
-        if(PlayerPos.X >= tamGridX || PlayerPos.X < 0 || PlayerPos.Y >= tamGridY || PlayerPos.Y < 0)
+        if(State == MovementState.Return && CurrentPos.X == PatrolStartPosition.X && CurrentPos.Y == PatrolStartPosition.Y)
             State = MovementState.Patrol;
+        else if (PlayerPos.X >= tamGridX || PlayerPos.X < 0 || PlayerPos.Y >= tamGridY || PlayerPos.Y < 0)
+            State = State != MovementState.Patrol ? MovementState.Return : MovementState.Patrol;
         else if (distanceX > SeekRange || distanceY > SeekRange)
-            State = MovementState.Patrol;
+            State = State != MovementState.Patrol ? MovementState.Return : MovementState.Patrol;
         else if (distanceX > AttackRange || distanceY > AttackRange)
             State = MovementState.Seek;
         else if (distanceX > 0 && distanceY > 0)
             State = MovementState.MoveAttackPosition;
         else
-            State = MovementState.Attack;
+        {
+            Point testAttack;
+            if(distanceX == 0)
+                testAttack = StraightLineMovement(CurrentPos, PlayerPos, false, true);
+            else
+                testAttack = StraightLineMovement(CurrentPos, PlayerPos, true, true);
+
+            if (PointIsInvalid(testAttack))
+                State = MovementState.MoveAttackPosition;
+            else
+                State = MovementState.Attack;
+        }
         /*
         else if (distanceX == 0)
         {
@@ -164,31 +204,31 @@ public class PathFinding
             firstDestination2 = new Point(destination.X, startPos.Y);
         }
 
-        Point direction = StraightLineMovement(startPos, firstDestination1, moveInXFirst);
-        if (!PointIsZero(direction))
+        Point direction = StraightLineMovement(startPos, firstDestination1, moveInXFirst, false);
+        if (!PointIsInvalid(direction))
         {
             if(firstDestination1.X == destination.X && firstDestination1.Y == destination.Y)
                 return direction;
-            if (!PointIsZero(StraightLineMovement(firstDestination1, destination, !moveInXFirst)))
+            if (!PointIsInvalid(StraightLineMovement(firstDestination1, destination, !moveInXFirst, true)))
                 return direction;
         }
 
-        direction = StraightLineMovement(startPos, firstDestination2, !moveInXFirst);
-        if (!PointIsZero(direction))
+        direction = StraightLineMovement(startPos, firstDestination2, !moveInXFirst, false);
+        if (!PointIsInvalid(direction))
         {
             if (firstDestination2.X == destination.X && firstDestination2.Y == destination.Y)
                 return direction;
-            if (!PointIsZero(StraightLineMovement(firstDestination2, destination, moveInXFirst)))
+            if (!PointIsInvalid(StraightLineMovement(firstDestination2, destination, moveInXFirst, true)))
                 return direction;
         }
 
-        return new Point(0, 0);
+        return new Point(-1, -1);
     }
 
-    private Point StraightLineMovement(Point startPos, Point destination, bool moveInX)
+    private Point StraightLineMovement(Point startPos, Point destination, bool moveInX, bool ignoreObstaculeAtDestination)
     {
         if (startPos.X == destination.X && startPos.Y == destination.Y)
-            return new Point(0, 0);
+            return new Point(-1, -1);
 
         int curPosInAxys, destinationPosInAxys;
         if (moveInX)
@@ -203,18 +243,22 @@ public class PathFinding
         }
 
         int movement = curPosInAxys > destinationPosInAxys ? -1 : 1;
-
-        while (curPosInAxys + movement != destinationPosInAxys)
+                
+        while (curPosInAxys != destinationPosInAxys)
         {
             bool isWalkable;
             curPosInAxys += movement;
+
+            if (ignoreObstaculeAtDestination && curPosInAxys == destinationPosInAxys)
+                break;
+
             if (moveInX)
                 isWalkable = NodesGrid[curPosInAxys][startPos.Y].IsWalkable;
             else
                 isWalkable = NodesGrid[startPos.X][curPosInAxys].IsWalkable;
 
             if (!isWalkable)
-                return new Point(0, 0);
+                return new Point(-1, -1);
         }
 
         if (moveInX)
@@ -223,18 +267,59 @@ public class PathFinding
         return new Point(0, movement);
     }
 
-    private bool PointIsZero(Point a)
+    private bool PointIsInvalid(Point p)
     {
-        if (a.X == 0 && a.Y == 0)
+        if (p.X == -1 && p.Y == -1)
             return true;
         return false;
+    }
+
+    private Point ContinuePath()
+    {
+        if(Path.Count < 2)
+            return new Point(-1, -1);
+        Path.Remove(Path.FirstOrDefault());
+        foreach (var node in Path)
+        {
+            if (!NodesGrid[node.Location.X][node.Location.Y].IsWalkable)
+                return new Point(-1, -1);
+        }
+
+        var destination = Path.FirstOrDefault().Location;
+        int dirX, dirY;
+
+        if (CurrentPos.X > destination.X)
+            dirX = -1;
+        else if(CurrentPos.X < destination.X)
+            dirX = 1;
+        else
+            dirX = 0;
+
+        if (CurrentPos.Y > destination.Y)
+            dirY = -1;
+        else if (CurrentPos.Y < destination.Y)
+            dirY = 1;
+        else
+            dirY = 0;
+
+        var direction = new Point(dirX, dirY);
+        return direction;
+    }
+
+    private Point AttackPosition()
+    {
+        return new Point(PlayerPos.X - CurrentPos.X, PlayerPos.Y - CurrentPos.Y);
     }
 
     #region A Star
 
     public Point AStar(Point destination)
-    {        
+    {
+        if (destination.X == CurrentPos.X && destination.Y == CurrentPos.Y)
+            return new Point(-1, -1);
+
         Node currentNode = NodesGrid[CurrentPos.X][CurrentPos.Y];
+
         if (Search(currentNode, destination))
         {
             Point nextTile = Path.FirstOrDefault().Location;
@@ -242,7 +327,7 @@ public class PathFinding
             return direction;
         }
         else
-            return new Point(0, 0);
+            return new Point(-1, -1);
     }
        
     private void GeraPath(Node finalNode)
@@ -250,19 +335,20 @@ public class PathFinding
         Path = new List<Node>();
         Node node = finalNode;
 
-        while(node.Location.X != CurrentPos.X && node.Location.Y != CurrentPos.Y)
+        while(node.Location.X != CurrentPos.X || node.Location.Y != CurrentPos.Y)
         {
             Path.Add(node);
             node = node.ParentNode;
         }
 
         Path = Path.Reverse().ToList();
+        Path.Remove(finalNode);
     }
 
     private bool Search(Node currentNode, Point destination)
     {
         currentNode.State = NodeState.Closed;
-        List<Node> nextNodes = GetAdjacentWalkableNodes(currentNode);
+        List<Node> nextNodes = GetAdjacentWalkableNodes(currentNode, destination);
         nextNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
         foreach (var nextNode in nextNodes)
         {
@@ -280,7 +366,7 @@ public class PathFinding
         return false;
     }
 
-    private List<Node> GetAdjacentWalkableNodes(Node fromNode)
+    private List<Node> GetAdjacentWalkableNodes(Node fromNode, Point destination)
     {
         List<Node> walkableNodes = new List<Node>();
         IList<Point> nextLocations = GetAdjacentLocations(fromNode.Location);
@@ -289,8 +375,16 @@ public class PathFinding
         {
             int x = location.X;
             int y = location.Y;
-
+            
             Node node = NodesGrid[x][y];
+
+            if (x == destination.X && y == destination.Y)
+            {
+                node.ParentNode = fromNode;
+                walkableNodes.Add(node);
+                return walkableNodes;
+            }
+
             // Ignore non-walkable nodes
             if (!node.IsWalkable)
                 continue;
@@ -352,9 +446,15 @@ public class PathFinding
             secondaryDestination = new Point(PlayerPos.X, CurrentPos.Y);
         }
 
-        Point direction = StraightLineMovement(CurrentPos, destination, moveEixoX);
-        if (PointIsZero(direction))
-            direction = StraightLineMovement(CurrentPos, secondaryDestination, !moveEixoX);
+        Point direction = StraightLineMovement(CurrentPos, destination, moveEixoX, false);
+        Point testAttack = StraightLineMovement(destination, PlayerPos, !moveEixoX, true);
+        if (PointIsInvalid(direction) || PointIsInvalid(testAttack))
+        {
+            direction = StraightLineMovement(CurrentPos, secondaryDestination, !moveEixoX, false);
+            testAttack = StraightLineMovement(secondaryDestination, PlayerPos, moveEixoX, true);
+            if (PointIsInvalid(testAttack))
+                return testAttack;
+        }
 
         return direction;
     }
@@ -389,7 +489,7 @@ public class PathFinding
             }
             else
             {
-                if (CurrentPos.X - 1 >= PatrolStartPosition.X)
+                if (CurrentPos.Y - 1 >= PatrolStartPosition.Y)
                     return new Point(0, -1);
                 else
                 {
@@ -467,7 +567,7 @@ public class PathFinding
                 }
             }
         }
-        return new Point(0, 0);
+        return new Point(-1, -1);
     }
 
     private void SetPatrolCurrentDirectionAsNext()

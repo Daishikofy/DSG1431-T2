@@ -254,9 +254,9 @@ MonoBehaviour:
   currentSpeed: 0
   currentCell: {x: 0, y: 0}
   AttackRange: 2
-  SeekRange: 3
-  PatrolWalkDistance: {x: 1, y: 1}
-  PatrolStartPosition: {x: 2, y: 1}
-  BaseLeft: {x: -5, y: -1}
-  TopRight: {x: 0, y: 2}
-  startDirection: 0
+  SeekRange: 5
+  PatrolWalkDistance: {x: 4, y: 0}
+  PatrolStartPosition: {x: 3, y: 6}
+  BaseLeft: {x: -8, y: -5}
+  TopRight: {x: 8, y: 3}
+  startDirection: 3

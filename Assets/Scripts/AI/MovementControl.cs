@@ -39,24 +39,30 @@ public class MovementControl : Movable
     // Update is called once per frame
     void Update()
     {
-        if (!onPathFindingCooldown)
+        //if (!onPathFindingCooldown)
+        //{
+        if (!isMoving && !onCooldown)
         {
-            if (!isMoving && !onCooldown)
+            onPathFindingCooldown = true;
+            pathFindingCooldown = 0.2f;
+            currentPos = new Point((int)transform.position.x, (int)transform.position.y);
+            playerPos = new Point((int)player.transform.position.x, (int)player.transform.position.y);
+            Point direction = controlador.DefineDirection(grid, currentPos, playerPos);
+            if (direction.X != -1 || direction.Y != -1)
             {
-                onPathFindingCooldown = true;
-                pathFindingCooldown = 0.2f;
-                currentPos = new Point((int)transform.position.x, (int)transform.position.y);
-                playerPos = new Point((int)player.transform.position.x, (int)player.transform.position.y);
-                Point direction = controlador.DefineDirection(grid, currentPos, playerPos);
-                if (direction.X != 0 || direction.Y != 0)
+                if (controlador.State == MovementState.Attack)
+                    Debug.Log("Ataquei");
+                else
                     goTo(new Vector2(direction.X, direction.Y));
+
             }
         }
-        else
-        {
-            pathFindingCooldown -= Time.deltaTime;
-            if (pathFindingCooldown <= 0)
-                onPathFindingCooldown = false;
-        }
+        //}
+        //else
+        //{
+        //    pathFindingCooldown -= Time.deltaTime;
+        //    if (pathFindingCooldown <= 0)
+        //        onPathFindingCooldown = false;
+        //}
     }
 }
