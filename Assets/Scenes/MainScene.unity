@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 216952606}
   - component: {fileID: 216952610}
   - component: {fileID: 216952608}
+  - component: {fileID: 216952611}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -685,6 +686,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f84beb669ce2e34f923097bed39877a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &216952611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216952605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235af6792cc51fe4793f95c3fa9b7724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &246963007
@@ -3072,6 +3085,7 @@ MonoBehaviour:
       m_Calls: []
   inventory: {fileID: 0}
   rechargeTime: 10
+  characterManager: {fileID: 216952611}
 --- !u!95 &1260479257
 Animator:
   serializedVersion: 3

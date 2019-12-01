@@ -86,6 +86,7 @@ public class DialogueManager : MonoBehaviour
     private void endDialogue()
     {
         animator.SetBool("IsOpen", false);
+        EventSystem.current.SetSelectedGameObject(null);
         GameManager.Instance.pauseGame();
     }
 }
