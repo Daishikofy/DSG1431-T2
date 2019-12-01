@@ -30,7 +30,6 @@ public class Player : Fighter
         controller.Player.AttackY.performed += context => useAttackY();
 		controller.Player.Interact.performed += context => interact();
         controller.Player.PrepAttack.performed += context => prepAttack();
-        controller.Player.Interact.performed += context => interact();
     }
     protected override void Start()
     {
@@ -119,12 +118,18 @@ public class Player : Fighter
         stop = frames;
     }
 
-    protected void KnockOut()
+    public void reset()
     {
-        Debug.Log("Player KnockOut");
+        currentCell = new Vector2(4,5);
+        transform.position = currentCell;
+        grid.placeInGrid(currentCell, this.gameObject);
+        if (isKo)
+            isKo = false;
+        setLife(maxLife);
+        setMana(maxMana);
     }
 
-        private void useAttackA()
+    private void useAttackA()
     {
         lastAttack = 0;
     }
@@ -143,6 +148,7 @@ public class Player : Fighter
 	
 	private void interact()
 	{
+       // Debug.Log("Interacting");
         Vector2 frontCell = currentCell + direction;
         GameObject obj = grid.getInCell(frontCell);
         if (obj != null)

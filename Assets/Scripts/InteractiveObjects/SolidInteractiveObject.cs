@@ -6,15 +6,18 @@
  */
 public class SolidInteractiveObject : MonoBehaviour, InterfaceInteractiveObject
 {
+    [SerializeField]
+    Dialogue dialogue;
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Debug.Log("cadastrou: " + (Vector2)transform.position);
         var grid = FindObjectOfType<DynamicGrid>();
         grid.placeInGrid((Vector2)transform.position, this.gameObject);
     }
     public virtual void onInteraction(Player player)
     {
-        Debug.Log("Solid object: " + gameObject.name);
+       // Debug.Log("Interaction with: " + gameObject.name);
+        if (dialogue != null)
+            DialogueManager.Instance.StartDialogue(dialogue);
     }
 }

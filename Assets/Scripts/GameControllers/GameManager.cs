@@ -16,6 +16,9 @@ using UnityEngine.UI;
     private Image gameOverPanel;
 
     private int loadedLevelBuildIndex = 0;
+
+    private CatsInput controller;
+    private bool isPaused = false;
     void Start()
     {
         Scene loadedLevel = SceneManager.GetSceneByBuildIndex(firstSceneIndex);
@@ -30,6 +33,10 @@ using UnityEngine.UI;
             StartCoroutine(LoadLevel(firstSceneIndex));
         gameOverPanel.gameObject.SetActive(false);
         player.Ko.AddListener(gameOver);
+
+        controller = new CatsInput();
+        controller.Player.Restart.Enable();
+        controller.Player.Restart.performed += context => pauseGame();
     }
 
     public void changeLevel(int levelIndex)
@@ -46,13 +53,17 @@ using UnityEngine.UI;
         color.a = 1f;
         transition.color = color;
 
+        Debug.Log("loadedLevelBuildIndex: " + loadedLevelBuildIndex + " - levelBuildIndex: " + levelBuildIndex);
+
         if (loadedLevelBuildIndex > 0 && loadedLevelBuildIndex != levelBuildIndex)
-            yield return SceneManager.UnloadSceneAsync(loadedLevelBuildIndex);
+         yield return SceneManager.UnloadSceneAsync(loadedLevelBuildIndex);
 
-        yield return SceneManager.LoadSceneAsync(levelBuildIndex, LoadSceneMode.Additive);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelBuildIndex));
-        loadedLevelBuildIndex = levelBuildIndex;
-
+        if (loadedLevelBuildIndex != levelBuildIndex)
+        { 
+            yield return SceneManager.LoadSceneAsync(levelBuildIndex, LoadSceneMode.Additive);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelBuildIndex));
+            loadedLevelBuildIndex = levelBuildIndex;
+        }
 
         while (transition.color.a > 0)
         {
@@ -64,8 +75,6 @@ using UnityEngine.UI;
 
         enableGame(true);
         GetComponent<DynamicGrid>().loadObstacles();
-        //DEBUG: Hard coded, need to create a dedicated script later
-        //GetComponent<DynamicGrid>().placeInGrid(Vector2.zero,player.gameObject);
     }
 
     public IEnumerator fadeOut()
@@ -101,4 +110,38 @@ using UnityEngine.UI;
         gameOverPanel.gameObject.SetActive(true);
     }
 
+    public void resetGame()
+    {
+        changeLevel(firstSceneIndex);
+        //TODO: Have a true variable for the player's position
+        player.reset();
+        gameOverPanel.gameObject.SetActive(false);
+    }
+
+    public void mainMenu()
+    {
+        enableGame(false);
+
+        Color color = transition.color;
+        color.a = 1f;
+        transition.color = color;
+
+        Scene mainMenu = SceneManager.GetSceneByName("MainMenu");
+        SceneManager.LoadScene("MainMenu");
+       // SceneManager.SetActiveScene(mainMenu);
+    }
+
+    private void pauseGame()
+    {
+        if (isPaused)
+        {
+            isPaused = false;      
+            Time.timeScale = 1;
+        }
+        else
+        {
+            isPaused = true;
+            Time.timeScale = 0;
+        }
+    }
 }

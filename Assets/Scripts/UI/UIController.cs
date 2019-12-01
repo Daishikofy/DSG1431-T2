@@ -41,7 +41,9 @@ public class UIController : MonoBehaviour
     {
         controller = new CatsInput();
         controller.Player.PrepAttack.Enable();
+        controller.Player.Restart.Enable();
         controller.Player.PrepAttack.performed += context => showPowerPanel();
+        controller.Player.Restart.performed += context => showPauseMenu();
         setIcons();
         Player player = FindObjectOfType<Player>();
         maxLife = player.maxLife;
@@ -91,12 +93,25 @@ public class UIController : MonoBehaviour
 
     public void showPowerPanel()
     {
-        Debug.Log("oi");
         if (powerPanelActivated)
             powerPanel.GetComponent<Animator>().SetBool("Selected", false);
         else 
             powerPanel.GetComponent<Animator>().SetBool("Selected", true);
         powerPanelActivated = !powerPanelActivated;
+    }
+
+    public void showPauseMenu()
+    {
+        if (pausedMenu.activeSelf)
+        {
+            pausedMenu.SetActive(false);
+            //enabled UI control
+        }
+        else
+        {
+            pausedMenu.SetActive(true);
+        }
+        //desable UI control
     }
 }
 

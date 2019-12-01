@@ -14,7 +14,7 @@ public class TestBehaviours : MonoBehaviour
 
     // Update is called once per frame
     void Restart()
-    {       
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);       
+    {
+        GetComponent<GameManager>().resetGame();       
     }
 }

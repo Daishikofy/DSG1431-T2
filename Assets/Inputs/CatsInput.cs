@@ -24,7 +24,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""id"": ""f5002512-0364-494d-8b78-40a0a3e33451"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)""
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""PrepAttack"",
