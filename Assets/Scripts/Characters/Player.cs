@@ -17,6 +17,8 @@ public class Player : Fighter
 
     [SerializeField]
     private float rechargeTime = 10.0f;
+    [SerializeField]
+    private CharacterManager characterManager;
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -34,6 +36,7 @@ public class Player : Fighter
     protected override void Start()
     {
         animator = GetComponent<Animator>();
+        characterManager.changeSkin("witche", this);
         lastAttack = -1;
         base.Start();
     }
@@ -137,6 +140,24 @@ public class Player : Fighter
             controller.Enable();
         else
             controller.Disable();
+    }
+
+    public void restrictController(bool value)
+    {
+        if (value)
+        {
+            controller.Player.AttackA.Disable();
+            controller.Player.AttackB.Disable();
+            controller.Player.AttackX.Disable();
+            controller.Player.AttackY.Disable();
+        }
+        else
+        {
+            controller.Player.AttackA.Enable();
+            controller.Player.AttackB.Enable();
+            controller.Player.AttackX.Enable();
+            controller.Player.AttackY.Enable();
+        }
     }
 
     private void useAttackA()
