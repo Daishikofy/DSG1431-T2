@@ -34,5 +34,11 @@ public class ProjectileAttack : Attack
             projectileObj.GetComponent<Projectile>().Inicialize(directions[i], range, power, this);
         }
     }
+
+    public override void finisher(Fighter character)
+    {
+        base.finisher(character);
+        use(character);
+    }
 }
 

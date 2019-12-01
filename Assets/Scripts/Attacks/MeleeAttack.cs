@@ -42,4 +42,10 @@ public class MeleeAttack : Attack
 
         }
     }
+
+    public override void finisher(Fighter character)
+    {
+        base.finisher(character);
+        use(character);
+    }
 }

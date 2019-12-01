@@ -102,14 +102,14 @@ public class Fighter : Movable, IDamageable
 
         manaIsRegenarating = false;
     }
-    public void AttackCoolDown(float coolDown)
+    public void AttackCoolDown(float attackCoolDownTime)
     {
-        StartCoroutine(AttackCoolDownCoroutine(coolDown));
+        StartCoroutine(AttackCoolDownCoroutine(attackCoolDownTime));
     }
-    protected IEnumerator AttackCoolDownCoroutine(float coolDown)
+    private IEnumerator AttackCoolDownCoroutine(float attackCoolDownTime)
     {
         attackCoolDown = true;
-        float time = coolDown;
+        float time = attackCoolDownTime;
 
         while (time > 0)
         {
@@ -135,7 +135,7 @@ public class Fighter : Movable, IDamageable
         setLife(0);
         isKo = true;
         //For Debug purpose
-        GetComponent<SpriteRenderer>().color = Color.black;
+        //GetComponent<SpriteRenderer>().color = Color.black;
         //TODO - Animator: deathAnimation
         Debug.Log("Knock out: " + this.gameObject.name);
         grid.removeFromGrid(currentCell);

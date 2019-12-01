@@ -23,17 +23,23 @@ public abstract class Attack : ScriptableObject
     [SerializeField]
     protected Element element;
     [SerializeField]
-    protected float cooldDown = 0.1f;
+    protected float cooldDown = 0.5f;
 
     [SerializeField]
     protected GameObject attackObject;
 
     protected Fighter character;
-
+    bool isFinisher;
     public virtual void use(Fighter character)
     {
         this.character = character;
-        ownerThrowBack(character);
+        ownerThrowBack();
+    }
+
+    public virtual void finisher(Fighter character)
+    {
+        this.character = character;
+        isFinisher = true;
     }
 
     protected Vector2 attackDirection(Vector2 relativePosition, Vector2 characterDirection)
@@ -43,9 +49,14 @@ public abstract class Attack : ScriptableObject
         return res;
     }
 
-    protected void ownerThrowBack(Fighter character)
+    protected void ownerThrowBack()
     {
-        character.AttackCoolDown(cooldDown);
+        if (isFinisher)
+        {
+            character.AttackCoolDown(cooldDown + 1f);
+        }
+        else
+            character.AttackCoolDown(cooldDown);
         character.addMana(cost * -1);
     }
 
@@ -57,7 +68,14 @@ public abstract class Attack : ScriptableObject
     public void giveDamage(IDamageable target)
     {
         int damages = calculateDamage();
+        if (isFinisher)
+        {
+            damages = damages * 2;
+            isFinisher = false;
+        }
+        else
+            character.addCombo();
         target.OnDamaged(damages, element);
-        character.addCombo();
+        
     }
 }

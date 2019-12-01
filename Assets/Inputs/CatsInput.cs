@@ -499,7 +499,7 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0758b886-d2b7-447c-b10f-b00d65f88b1f"",
-                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -895,14 +895,6 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ScrollWheel"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""999b6e1a-77f7-4031-aed4-5deadd514c76"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""MiddleClick"",
                     ""type"": ""PassThrough"",
                     ""id"": ""841fb3b9-3b7e-4708-bdf3-3a403084ad5a"",
@@ -919,34 +911,26 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""TrackedDevicePosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""5d6083e3-b2d9-4354-abf0-cc9e1b1ed989"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TrackedDeviceOrientation"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""dcfd4b33-40b8-43e2-80d0-0be54360a11d"",
-                    ""expectedControlType"": ""Quaternion"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TrackedDeviceSelect"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""ae1384c1-2aa7-4c3e-b06c-a71073abd8d5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""25eb2efc-7569-426f-85af-23361735191e"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2),MultiTap""
+                },
+                {
+                    ""name"": ""Validate"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb69824c-f650-41fc-9115-3fb01c7081ce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2),MultiTap""
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4864086-a458-4bea-8782-8a803ced895e"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2),MultiTap""
                 }
@@ -1218,8 +1202,30 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""231b79dd-aa02-41f0-9c11-7abd720872bb"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9e92bb26-7e3b-4ec4-b06b-3c8f8e498ddc"",
                     ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3934dc2e-1100-4c77-bb0d-6af3840f05d0"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1295,17 +1301,6 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""38c99815-14ea-4617-8627-164d27641299"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""ScrollWheel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""24066f69-da47-44f3-a07e-0015fb02eb2e"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
@@ -1323,39 +1318,6 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""RightClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7236c0d9-6ca3-47cf-a6ee-a97f5b59ea77"",
-                    ""path"": ""<XRController>/devicePosition"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""TrackedDevicePosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""23e01e3a-f935-4948-8d8b-9bcac77714fb"",
-                    ""path"": ""<XRController>/deviceRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""TrackedDeviceOrientation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""932fe797-a0a9-4eef-bd2d-556b362e08d0"",
-                    ""path"": ""<XRController>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""TrackedDeviceSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1501,6 +1463,50 @@ public class @CatsInput : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c7d33fa-fe65-48a9-9e43-21b48149e476"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Validate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a52fb1c1-5d7d-40d8-9aed-80b6a5e6b734"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Validate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef95f79e-5e14-4812-a189-c6e5f4aaf021"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ae8894f-c78e-46af-a11f-e08ba547dfca"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1587,13 +1593,11 @@ public class @CatsInput : IInputActionCollection, IDisposable
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
-        m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
-        m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
-        m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        m_UI_TrackedDeviceSelect = m_UI.FindAction("TrackedDeviceSelect", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
+        m_UI_Validate = m_UI.FindAction("Validate", throwIfNotFound: true);
+        m_UI_Start = m_UI.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1753,13 +1757,11 @@ public class @CatsInput : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
-    private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
-    private readonly InputAction m_UI_TrackedDevicePosition;
-    private readonly InputAction m_UI_TrackedDeviceOrientation;
-    private readonly InputAction m_UI_TrackedDeviceSelect;
     private readonly InputAction m_UI_Move;
+    private readonly InputAction m_UI_Validate;
+    private readonly InputAction m_UI_Start;
     public struct UIActions
     {
         private @CatsInput m_Wrapper;
@@ -1769,13 +1771,11 @@ public class @CatsInput : IInputActionCollection, IDisposable
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
-        public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
-        public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
-        public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-        public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
         public InputAction @Move => m_Wrapper.m_UI_Move;
+        public InputAction @Validate => m_Wrapper.m_UI_Validate;
+        public InputAction @Start => m_Wrapper.m_UI_Start;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1800,27 +1800,21 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 @Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
                 @Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
                 @Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-                @ScrollWheel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
-                @ScrollWheel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
-                @ScrollWheel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
                 @MiddleClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
                 @MiddleClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
                 @MiddleClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
                 @RightClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
                 @RightClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
                 @RightClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
-                @TrackedDevicePosition.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
-                @TrackedDevicePosition.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
-                @TrackedDevicePosition.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
-                @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @TrackedDeviceSelect.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
-                @TrackedDeviceSelect.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
-                @TrackedDeviceSelect.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 @Move.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
+                @Validate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnValidate;
+                @Validate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnValidate;
+                @Validate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnValidate;
+                @Start.started -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1840,27 +1834,21 @@ public class @CatsInput : IInputActionCollection, IDisposable
                 @Click.started += instance.OnClick;
                 @Click.performed += instance.OnClick;
                 @Click.canceled += instance.OnClick;
-                @ScrollWheel.started += instance.OnScrollWheel;
-                @ScrollWheel.performed += instance.OnScrollWheel;
-                @ScrollWheel.canceled += instance.OnScrollWheel;
                 @MiddleClick.started += instance.OnMiddleClick;
                 @MiddleClick.performed += instance.OnMiddleClick;
                 @MiddleClick.canceled += instance.OnMiddleClick;
                 @RightClick.started += instance.OnRightClick;
                 @RightClick.performed += instance.OnRightClick;
                 @RightClick.canceled += instance.OnRightClick;
-                @TrackedDevicePosition.started += instance.OnTrackedDevicePosition;
-                @TrackedDevicePosition.performed += instance.OnTrackedDevicePosition;
-                @TrackedDevicePosition.canceled += instance.OnTrackedDevicePosition;
-                @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-                @TrackedDeviceSelect.started += instance.OnTrackedDeviceSelect;
-                @TrackedDeviceSelect.performed += instance.OnTrackedDeviceSelect;
-                @TrackedDeviceSelect.canceled += instance.OnTrackedDeviceSelect;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Validate.started += instance.OnValidate;
+                @Validate.performed += instance.OnValidate;
+                @Validate.canceled += instance.OnValidate;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -1930,12 +1918,10 @@ public class @CatsInput : IInputActionCollection, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
-        void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
-        void OnTrackedDevicePosition(InputAction.CallbackContext context);
-        void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
-        void OnTrackedDeviceSelect(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnValidate(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
 }

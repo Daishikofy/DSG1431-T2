@@ -7,7 +7,7 @@
 public class SolidInteractiveObject : MonoBehaviour, InterfaceInteractiveObject
 {
     [SerializeField]
-    Dialogue dialogue;
+    protected Dialogue dialogue;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -16,7 +16,7 @@ public class SolidInteractiveObject : MonoBehaviour, InterfaceInteractiveObject
     }
     public virtual void onInteraction(Player player)
     {
-       // Debug.Log("Interaction with: " + gameObject.name);
+       Debug.Log("Interaction with: " + gameObject.name);
         if (dialogue != null)
             DialogueManager.Instance.StartDialogue(dialogue);
     }

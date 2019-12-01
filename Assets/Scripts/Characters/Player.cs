@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class Player : Fighter
 {
     private Animator animator;
-    private int lastAttack;   
+    private int lastAttack;
     private CatsInput controller;
     private int stop = 0;
     [HideInInspector]
@@ -17,6 +17,8 @@ public class Player : Fighter
 
     [SerializeField]
     private float rechargeTime = 10.0f;
+    [SerializeField]
+    private CharacterManager characterManager;
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -28,12 +30,13 @@ public class Player : Fighter
         controller.Player.AttackB.performed += context => useAttackB();
         controller.Player.AttackX.performed += context => useAttackX();
         controller.Player.AttackY.performed += context => useAttackY();
-		controller.Player.Interact.performed += context => interact();
+        controller.Player.Interact.performed += context => interact();
         controller.Player.PrepAttack.performed += context => prepAttack();
     }
     protected override void Start()
     {
         animator = GetComponent<Animator>();
+        characterManager.changeSkin("witche", this);
         lastAttack = -1;
         base.Start();
     }
@@ -55,29 +58,33 @@ public class Player : Fighter
             setMana(0);
             StartCoroutine(ManaCoolDown(manaCoolDown));
         }
-        if (manaIsRegenarating)
+        if (manaIsRegenarating || attackCoolDown)
         {
             lastAttack = -1;
         }
-        if (attackCoolDown)
-            return;
 
+        if (attackCoolDown) return;
+        
         if (!isMoving)
         {
             if (lastAttack >= 0 && !manaIsRegenarating)
-            {
-                if (currentCombo >= combo)
-                {
-                    Debug.Log("COMBO!!!");
-                    setCombo(0);
-                    //TODO: Implemente combo effects
-                }
+            {               
                 if (moveSet.Length > lastAttack)
                 {
-                    moveSet[lastAttack].use(this);
-                    timeFromLastAttack = 0;
+                    if (currentCombo >= (combo-1))
+                    {
+                        Debug.Log("COMBO!!!");
+                        setCombo(0);
+                        moveSet[lastAttack].finisher(this);
+                        //TODO: Implemente combo effects
+                    }
+                    else
+                    {
+                        moveSet[lastAttack].use(this);
+                        timeFromLastAttack = 0;
+                    }
                 }
-                lastAttack = -1;           
+                lastAttack = -1;
             }
         }
 
@@ -86,7 +93,7 @@ public class Player : Fighter
 
         if (movement.x != 0 || movement.y != 0)
         {
-            direction = movement;           
+            direction = movement;
             if (!isMoving)
             {
                 animator.SetFloat("Move X", direction.x);
@@ -94,7 +101,7 @@ public class Player : Fighter
             }
         }
         animator.SetBool("Moving", isMoving);
-        
+
         if (stop <= 0)
         {
             Fighter obj;
@@ -115,18 +122,47 @@ public class Player : Fighter
 
     public void stopForFrames(int frames)
     {
+        movement = Vector2Int.zero;
         stop = frames;
     }
 
     public void reset()
     {
-        currentCell = new Vector2(4,5);
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+        currentCell = new Vector2(4, 5);
         transform.position = currentCell;
         grid.placeInGrid(currentCell, this.gameObject);
         if (isKo)
             isKo = false;
         setLife(maxLife);
         setMana(maxMana);
+    }
+
+    public void enableController(bool value)
+    {
+        if (value)
+            controller.Enable();
+        else
+            controller.Disable();
+    }
+
+    public void restrictController(bool value)
+    {
+        if (value)
+        {
+            controller.Player.AttackA.Disable();
+            controller.Player.AttackB.Disable();
+            controller.Player.AttackX.Disable();
+            controller.Player.AttackY.Disable();
+        }
+        else
+        {
+            controller.Player.AttackA.Enable();
+            controller.Player.AttackB.Enable();
+            controller.Player.AttackX.Enable();
+            controller.Player.AttackY.Enable();
+        }
     }
 
     private void useAttackA()
@@ -153,7 +189,9 @@ public class Player : Fighter
         GameObject obj = grid.getInCell(frontCell);
         if (obj != null)
         {
-            obj.GetComponent<InterfaceInteractiveObject>().onInteraction(this);
+            var interaction = obj.GetComponent<InterfaceInteractiveObject>();
+            if (interaction != null)
+                interaction.onInteraction(this);
         }
 	}
 
