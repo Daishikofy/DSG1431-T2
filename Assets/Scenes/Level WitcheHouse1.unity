@@ -150,7 +150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1912861100}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &735624605
 TilemapRenderer:
@@ -2400,7 +2400,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1912861100}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1512599313
 TilemapRenderer:
@@ -3144,12 +3144,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!61 &1517567961 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8220351306597206447, guid: a52a9f9c3d9298f448f6f66ff737bf63,
+    type: 3}
+  m_PrefabInstance: {fileID: 1582765408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1582765408
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1912861100}
+    m_TransformParent: {fileID: 1750441859}
     m_Modifications:
     - target: {fileID: 8220351306597206442, guid: a52a9f9c3d9298f448f6f66ff737bf63,
         type: 3}
@@ -3194,7 +3200,7 @@ PrefabInstance:
     - target: {fileID: 8220351306597206445, guid: a52a9f9c3d9298f448f6f66ff737bf63,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8220351306597206445, guid: a52a9f9c3d9298f448f6f66ff737bf63,
         type: 3}
@@ -3220,6 +3226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220351306597206447, guid: a52a9f9c3d9298f448f6f66ff737bf63,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8220351306597206444, guid: a52a9f9c3d9298f448f6f66ff737bf63,
         type: 3}
@@ -3295,15 +3306,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Cassandra
+    name: Cat
     sentences:
-    - Hum... The cat... Yes, I think it could work!
-    - I just hope for my magic seal to still be in place.
+    - Miaou
   laterSentences:
+  - Hum... The cat... Yes, I think it could work!
+  - I just hope for my magic seal to still be in place.
+  laterSentences2:
   - It worked!!!
   - I am now free to take my revange!!
   - '!!! MIAAHAHAHAHAHAHAW !!!'
-  laterSentences2: []
+  exit: {fileID: 1517567961}
 --- !u!212 &1661621890
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3395,6 +3408,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1661621888}
+  - {fileID: 1582765409}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3438,7 +3452,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1582765409}
   - {fileID: 735624604}
   - {fileID: 1512599312}
   - {fileID: 2033747430}
@@ -3465,7 +3478,7 @@ PrefabInstance:
     - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
         type: 3}
@@ -3511,6 +3524,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756755658064050579, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8730704820686605281, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
         type: 3}
@@ -3583,7 +3601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1912861100}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &2033747431
 TilemapRenderer:

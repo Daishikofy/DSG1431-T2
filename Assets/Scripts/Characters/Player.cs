@@ -36,7 +36,9 @@ public class Player : Fighter
     protected override void Start()
     {
         animator = GetComponent<Animator>();
-        characterManager.changeSkin("witche", this);
+
+        //characterManager.changeSkin("witche", this);
+
         lastAttack = -1;
         base.Start();
     }
