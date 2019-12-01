@@ -561,7 +561,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 765962960}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a90a256b9ded0c54faabc2dad90c9967, type: 3}
   m_Name: 
@@ -1535,6 +1535,51 @@ PrefabInstance:
         type: 3}
       propertyPath: minMax.y
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: PatrolStartPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: PatrolStartPosition.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: BaseLeft.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: BaseLeft.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: TopRight.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: TopRight.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: PatrolWalkDistance.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: PatrolWalkDistance.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: startDirection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 968c6e18460dde24bb5f55e02cc661ed, type: 3}
@@ -10406,6 +10451,51 @@ PrefabInstance:
         type: 3}
       propertyPath: markedTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: BaseLeft.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: BaseLeft.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: TopRight.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: TopRight.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolStartPosition.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolStartPosition.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: startDirection
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolWalkDistance.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolWalkDistance.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28668a438149bd4c8c5088db5021c07, type: 3}
