@@ -22,7 +22,8 @@ public class PathFinding
 
     private Point PatrolStartPosition;
     private Point PatrolWalkDistance;
-    private PatrolStartDirection StartDirection;
+    private PatrolDirection PatrolStartDirection;
+    private PatrolDirection PatrolCurrentDirection;
 
     private int tamGridX;
     private int tamGridY;
@@ -32,7 +33,7 @@ public class PathFinding
 
     private System.Random Rand;
 
-    public PathFinding(int attackRange, int seekRange, Point patrolWalkDistance, Point patrolStartPosition, Point baseLeft, Point topRight, PatrolStartDirection startDirection)
+    public PathFinding(int attackRange, int seekRange, Point patrolWalkDistance, Point patrolStartPosition, Point baseLeft, Point topRight, PatrolDirection startDirection)
     {
         AttackRange = attackRange;
         SeekRange = seekRange;
@@ -40,7 +41,8 @@ public class PathFinding
 
         PatrolStartPosition = patrolStartPosition;
         PatrolWalkDistance = patrolWalkDistance;
-        StartDirection = startDirection;
+        PatrolStartDirection = startDirection;
+        PatrolCurrentDirection = startDirection;
 
         BaseLeftPos = baseLeft;
         tamGridX = Math.Abs(baseLeft.X - topRight.X) + 1;
@@ -64,34 +66,29 @@ public class PathFinding
             return PatrolMovement();
         else
         {
-            InstantiateVariables(grid);
-            Point direction;
-            if (State == MovementState.MoveAttackPosition)
-            {
-                direction = MoveToAttackPosition();
-                if (!PointIsZero(direction))
-                    return direction;
+            Point direction, destination;
 
-                State = MovementState.Seek;
-            }
-
-            Point destination;
-            if (State == MovementState.Seek)
+            if (State == MovementState.Seek || State == MovementState.MoveAttackPosition)
                 destination = PlayerPos;
-            else if (State == MovementState.Return)
+            else// if (State == MovementState.Return)
                 destination = PatrolStartPosition;
 
+            InstantiateGrid(grid, destination);
+            
+            if (State == MovementState.MoveAttackPosition)
+                direction = MoveToAttackPosition();
+            else
+                direction = TwoWayMovement(CurrentPos, destination);
 
-            direction = TwoWayMovement(CurrentPos, destination);
             if (PointIsZero(direction))
-                direction = AStar();
+                direction = AStar(destination);
 
             return direction;
         }
 
     }
 
-    private void InstantiateVariables(DynamicGrid grid)
+    private void InstantiateGrid(DynamicGrid grid, Point destination)
     {
         NodesGrid = new List<IList<Node>>();
 
@@ -105,7 +102,7 @@ public class PathFinding
                 {
                     ParentNode = null,
                     G = Math.Abs(CurrentPos.X - i) + Math.Abs(CurrentPos.Y - j),
-                    H = Math.Abs(this.PlayerPos.X - i) + Math.Abs(this.PlayerPos.Y - j),
+                    H = Math.Abs(destination.X - i) + Math.Abs(destination.Y - j),
                     State = NodeState.Open,
                     Location = new Point(i, j),
                     RealLocation = realLocation,
@@ -125,7 +122,7 @@ public class PathFinding
 
         if(PlayerPos.X >= tamGridX || PlayerPos.X < 0 || PlayerPos.Y >= tamGridY || PlayerPos.Y < 0)
             State = MovementState.Patrol;
-        if (distanceX > SeekRange || distanceY > SeekRange)
+        else if (distanceX > SeekRange || distanceY > SeekRange)
             State = MovementState.Patrol;
         else if (distanceX > AttackRange || distanceY > AttackRange)
             State = MovementState.Seek;
@@ -170,6 +167,8 @@ public class PathFinding
         Point direction = StraightLineMovement(startPos, firstDestination1, moveInXFirst);
         if (!PointIsZero(direction))
         {
+            if(firstDestination1.X == destination.X && firstDestination1.Y == destination.Y)
+                return direction;
             if (!PointIsZero(StraightLineMovement(firstDestination1, destination, !moveInXFirst)))
                 return direction;
         }
@@ -177,6 +176,8 @@ public class PathFinding
         direction = StraightLineMovement(startPos, firstDestination2, !moveInXFirst);
         if (!PointIsZero(direction))
         {
+            if (firstDestination2.X == destination.X && firstDestination2.Y == destination.Y)
+                return direction;
             if (!PointIsZero(StraightLineMovement(firstDestination2, destination, moveInXFirst)))
                 return direction;
         }
@@ -186,6 +187,9 @@ public class PathFinding
 
     private Point StraightLineMovement(Point startPos, Point destination, bool moveInX)
     {
+        if (startPos.X == destination.X && startPos.Y == destination.Y)
+            return new Point(0, 0);
+
         int curPosInAxys, destinationPosInAxys;
         if (moveInX)
         {
@@ -200,7 +204,7 @@ public class PathFinding
 
         int movement = curPosInAxys > destinationPosInAxys ? -1 : 1;
 
-        do
+        while (curPosInAxys + movement != destinationPosInAxys)
         {
             bool isWalkable;
             curPosInAxys += movement;
@@ -211,7 +215,7 @@ public class PathFinding
 
             if (!isWalkable)
                 return new Point(0, 0);
-        } while (curPosInAxys + movement != destinationPosInAxys);
+        }
 
         if (moveInX)
             return new Point(movement, 0);
@@ -228,10 +232,10 @@ public class PathFinding
 
     #region A Star
 
-    public Point AStar()
+    public Point AStar(Point destination)
     {        
         Node currentNode = NodesGrid[CurrentPos.X][CurrentPos.Y];
-        if (Search(currentNode))
+        if (Search(currentNode, destination))
         {
             Point nextTile = Path.FirstOrDefault().Location;
             var direction = new Point(nextTile.X - CurrentPos.X, nextTile.Y - CurrentPos.Y);
@@ -255,21 +259,21 @@ public class PathFinding
         Path = Path.Reverse().ToList();
     }
 
-    private bool Search(Node currentNode)
+    private bool Search(Node currentNode, Point destination)
     {
         currentNode.State = NodeState.Closed;
         List<Node> nextNodes = GetAdjacentWalkableNodes(currentNode);
         nextNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
         foreach (var nextNode in nextNodes)
         {
-            if (nextNode.Location == PlayerPos)
+            if (nextNode.Location == destination)
             {
                 GeraPath(nextNode);
                 return true;
             }
             else
             {
-                if (Search(nextNode)) // Note: Recurses back into Search(Node)
+                if (Search(nextNode, destination)) // Note: Recurses back into Search(Node)
                     return true;
             }
         }
@@ -327,18 +331,25 @@ public class PathFinding
 
     public Point MoveToAttackPosition()
     {
-        bool moveEixoX = Rand.Next() % 2 == 0;
         Point destination, secondaryDestination;
+        bool moveEixoX;
 
+        if (PlayerPos.X - CurrentPos.X == PlayerPos.Y - CurrentPos.Y)
+            moveEixoX = Rand.Next() % 2 == 0;
+        else if (PlayerPos.X - CurrentPos.X > PlayerPos.Y - CurrentPos.Y)
+            moveEixoX = false;
+        else
+            moveEixoX = true;
+        
         if (moveEixoX)
         {
-            destination = new Point(CurrentPos.X - PlayerPos.X, CurrentPos.Y);
-            secondaryDestination = new Point(CurrentPos.X, CurrentPos.Y - PlayerPos.Y);
+            destination = new Point(PlayerPos.X, CurrentPos.Y);
+            secondaryDestination = new Point(CurrentPos.X, PlayerPos.Y);
         }
         else
         {
-            destination = new Point(CurrentPos.X, CurrentPos.Y - PlayerPos.Y);
-            secondaryDestination = new Point(CurrentPos.X - PlayerPos.X, CurrentPos.Y);
+            destination = new Point(CurrentPos.X, PlayerPos.Y);
+            secondaryDestination = new Point(PlayerPos.X, CurrentPos.Y);
         }
 
         Point direction = StraightLineMovement(CurrentPos, destination, moveEixoX);
@@ -353,7 +364,135 @@ public class PathFinding
     #region Patrol Movement
     public Point PatrolMovement()
     {
+        bool startedMovingLeft = PatrolStartDirection == PatrolDirection.LeftDown || PatrolStartDirection == PatrolDirection.LeftUp 
+            || PatrolStartDirection == PatrolDirection.DownLeft || PatrolStartDirection == PatrolDirection.UpLeft;
+        bool startedMovingUp = PatrolStartDirection == PatrolDirection.LeftUp || PatrolStartDirection == PatrolDirection.RightUp
+            || PatrolStartDirection == PatrolDirection.UpLeft || PatrolStartDirection == PatrolDirection.UpRight;
+
+
+        bool isMovingLeft = PatrolCurrentDirection == PatrolDirection.LeftDown || PatrolCurrentDirection == PatrolDirection.LeftUp;
+        bool isMovingRight = PatrolCurrentDirection == PatrolDirection.RightDown || PatrolCurrentDirection == PatrolDirection.RightUp;
+        bool isMovingUp = PatrolCurrentDirection == PatrolDirection.UpLeft || PatrolCurrentDirection == PatrolDirection.UpRight;
+        bool isMovingDown = PatrolCurrentDirection == PatrolDirection.DownLeft || PatrolCurrentDirection == PatrolDirection.DownRight;
+
+        if (isMovingDown)
+        {
+            if (!startedMovingUp)
+            {
+                if (CurrentPos.Y - 1 >= PatrolStartPosition.Y - PatrolWalkDistance.Y)
+                    return new Point(0, -1);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+            else
+            {
+                if (CurrentPos.X - 1 >= PatrolStartPosition.X)
+                    return new Point(0, -1);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+        }
+        else if (isMovingUp)
+        {
+            if (startedMovingUp)
+            {
+                if (CurrentPos.Y + 1 <= PatrolStartPosition.Y + PatrolWalkDistance.Y)
+                    return new Point(0, 1);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+            else
+            {
+                if (CurrentPos.Y + 1 <= PatrolStartPosition.Y)
+                    return new Point(0, 1);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+        }
+        else if (isMovingLeft)
+        {
+            if (startedMovingLeft)
+            {
+                if (CurrentPos.X - 1 >= PatrolStartPosition.X - PatrolWalkDistance.X)
+                    return new Point(-1, 0);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+            else
+            {
+                if (CurrentPos.X - 1 >= PatrolStartPosition.X)
+                    return new Point(-1, 0);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+        }
+        else if (isMovingRight)
+        {
+            if (!startedMovingLeft)
+            {
+                if (CurrentPos.X + 1 <= PatrolStartPosition.X + PatrolWalkDistance.X)
+                    return new Point(1, 0);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+            else
+            {
+                if (CurrentPos.X + 1 <= PatrolStartPosition.X)
+                    return new Point(1, 0);
+                else
+                {
+                    SetPatrolCurrentDirectionAsNext();
+                    return PatrolMovement();
+                }
+            }
+        }
         return new Point(0, 0);
+    }
+
+    private void SetPatrolCurrentDirectionAsNext()
+    {
+        PatrolCurrentDirection = PatrolNextDirection(PatrolCurrentDirection);
+    }
+
+    private PatrolDirection PatrolNextDirection(PatrolDirection currentDirection)
+    {
+        if (currentDirection == PatrolDirection.DownLeft)
+            return PatrolDirection.LeftUp;
+        if (currentDirection == PatrolDirection.DownRight)
+            return PatrolDirection.RightUp;
+        if (currentDirection == PatrolDirection.LeftDown)
+            return PatrolDirection.DownRight;
+        if (currentDirection == PatrolDirection.LeftUp)
+            return PatrolDirection.UpRight;
+        if (currentDirection == PatrolDirection.RightDown)
+            return PatrolDirection.DownLeft;
+        if (currentDirection == PatrolDirection.RightUp)
+            return PatrolDirection.UpLeft;
+        if (currentDirection == PatrolDirection.UpLeft)
+            return PatrolDirection.LeftDown;
+        //if (currentDirection == PatrolDirection.UpRight)
+            return PatrolDirection.RightDown;
     }
     #endregion
 }
@@ -382,7 +521,7 @@ public enum MovementState
     Patrol, Return, Seek, MoveAttackPosition, Attack//UpAttack, DownAttack, LeftAttack, RightAttack
 }
 
-public enum PatrolStartDirection
+public enum PatrolDirection
 {
     LeftDown, LeftUp, RightDown, RightUp, DownLeft, UpLeft, DownRight, UpRight
 }

@@ -11,7 +11,7 @@ public class MovementControl : Movable
     public Vector2 PatrolStartPosition;
     public Vector2 BaseLeft;
     public Vector2 TopRight;
-    public PatrolStartDirection startDirection;
+    public PatrolDirection startDirection;
 
     public Point currentPos;
     public Point playerPos;

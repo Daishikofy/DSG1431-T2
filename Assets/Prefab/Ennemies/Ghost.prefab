@@ -228,6 +228,9 @@ MonoBehaviour:
   updateComboUI:
     m_PersistentCalls:
       m_Calls: []
+  Ko:
+    m_PersistentCalls:
+      m_Calls: []
   minMax: {x: -5, y: -1}
   axe: 120
   markedTime: 0
@@ -250,8 +253,8 @@ MonoBehaviour:
   speed: 0
   currentSpeed: 0
   currentCell: {x: 0, y: 0}
-  AttackRange: 1
-  SeekRange: 2
+  AttackRange: 2
+  SeekRange: 3
   PatrolWalkDistance: {x: 1, y: 1}
   PatrolStartPosition: {x: 2, y: 1}
   BaseLeft: {x: -5, y: -1}
