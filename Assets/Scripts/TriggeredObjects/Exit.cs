@@ -25,11 +25,10 @@ public class Exit : MonoBehaviour
 
     private void enterDoor(Player character)
     {
-        var manager = FindObjectOfType<GameManager>();
         //If the exit is in the same scene
         if (levelIndex == -1)
         {
-            StartCoroutine(manager.fadeOut());
+            StartCoroutine(GameManager.Instance.fadeOut());
             FindObjectOfType<DynamicGrid>().moveInGrid(character.currentCell, position);
             character.currentCell = position;
             character.transform.position = position;
@@ -37,7 +36,7 @@ public class Exit : MonoBehaviour
         //TODO: Study if it would be more eficiente for the dynamicGrid to be static
         else
         {
-            manager.changeLevel(levelIndex);
+            GameManager.Instance.changeLevel(levelIndex);
             character.changeLevel(position);
         }
     }

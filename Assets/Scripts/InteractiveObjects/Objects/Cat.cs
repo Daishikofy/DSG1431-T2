@@ -14,17 +14,25 @@ public class Cat : SolidInteractiveObject
         {
             if (manager == null)
                 manager = FindObjectOfType<CharacterManager>();
-            manager.changeSkin("cat", player);
-            dialogue.sentences = laterSentences;
-            base.onInteraction(player);
-
-            FindObjectOfType<DynamicGrid>().removeFromGrid(this.transform.position);
-            GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(changeBody(player));
         }
         else
         {
             base.onInteraction(player);
             firstDialogue = true;
         }
+    }
+
+    private IEnumerator changeBody(Player player)
+    {
+        yield return StartCoroutine(GameManager.Instance.fadeIn());
+        manager.changeSkin("cat", player);
+        dialogue.sentences = laterSentences;
+        FindObjectOfType<DynamicGrid>().removeFromGrid(this.transform.position);
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return StartCoroutine(GameManager.Instance.fadeOut());
+        base.onInteraction(player);
+        
     }
 }

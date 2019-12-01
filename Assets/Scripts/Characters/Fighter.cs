@@ -102,14 +102,14 @@ public class Fighter : Movable, IDamageable
 
         manaIsRegenarating = false;
     }
-    public void AttackCoolDown(float coolDown)
+    public void AttackCoolDown(float attackCoolDownTime)
     {
-        StartCoroutine(AttackCoolDownCoroutine(coolDown));
+        StartCoroutine(AttackCoolDownCoroutine(attackCoolDownTime));
     }
-    protected IEnumerator AttackCoolDownCoroutine(float coolDown)
+    private IEnumerator AttackCoolDownCoroutine(float attackCoolDownTime)
     {
         attackCoolDown = true;
-        float time = coolDown;
+        float time = attackCoolDownTime;
 
         while (time > 0)
         {

@@ -102,7 +102,7 @@ using UnityEngine.UI;
             Color color = transition.color;
             color.a -= 0.1f;
             transition.color = color;
-            yield return null;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -113,7 +113,7 @@ using UnityEngine.UI;
             Color color = transition.color;
             color.a += 0.1f;
             transition.color = color;
-            yield return null;
+            yield return new WaitForSeconds(0.05f);
         }
     }
     private void enableGame(bool value)

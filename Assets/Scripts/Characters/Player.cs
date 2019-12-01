@@ -58,27 +58,31 @@ public class Player : Fighter
             setMana(0);
             StartCoroutine(ManaCoolDown(manaCoolDown));
         }
-        if (manaIsRegenarating)
+        if (manaIsRegenarating || attackCoolDown)
         {
             lastAttack = -1;
         }
-        if (attackCoolDown)
-            return;
 
+        if (attackCoolDown) return;
+        
         if (!isMoving)
         {
             if (lastAttack >= 0 && !manaIsRegenarating)
-            {
-                if (currentCombo >= combo)
-                {
-                    Debug.Log("COMBO!!!");
-                    setCombo(0);
-                    //TODO: Implemente combo effects
-                }
+            {               
                 if (moveSet.Length > lastAttack)
                 {
-                    moveSet[lastAttack].use(this);
-                    timeFromLastAttack = 0;
+                    if (currentCombo >= (combo-1))
+                    {
+                        Debug.Log("COMBO!!!");
+                        setCombo(0);
+                        moveSet[lastAttack].finisher(this);
+                        //TODO: Implemente combo effects
+                    }
+                    else
+                    {
+                        moveSet[lastAttack].use(this);
+                        timeFromLastAttack = 0;
+                    }
                 }
                 lastAttack = -1;
             }
@@ -184,7 +188,9 @@ public class Player : Fighter
         GameObject obj = grid.getInCell(frontCell);
         if (obj != null)
         {
-            obj.GetComponent<InterfaceInteractiveObject>().onInteraction(this);
+            var interaction = obj.GetComponent<InterfaceInteractiveObject>();
+            if (interaction != null)
+                interaction.onInteraction(this);
         }
 	}
 
