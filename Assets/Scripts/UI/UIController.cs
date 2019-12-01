@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -36,14 +37,18 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject pausedMenu;
 
+    [Space]//GameOver menu
+    [SerializeField]
+    Image gameOverPanel;
+
     // Start is called before the first frame update
     private void Start()
     {
         controller = new CatsInput();
         controller.Player.PrepAttack.Enable();
-        controller.Player.Restart.Enable();
         controller.Player.PrepAttack.performed += context => showPowerPanel();
-        controller.Player.Restart.performed += context => showPauseMenu();
+        controller.UI.Start.Enable();
+        controller.UI.Start.performed += context => showPauseMenu();
         setIcons();
         Player player = FindObjectOfType<Player>();
         maxLife = player.maxLife;
@@ -103,15 +108,48 @@ public class UIController : MonoBehaviour
     public void showPauseMenu()
     {
         if (pausedMenu.activeSelf)
-        {
+        {//unpause
             pausedMenu.SetActive(false);
+            GameManager.Instance.pauseGame();
             //enabled UI control
         }
         else
-        {
+        {//pause
+
             pausedMenu.SetActive(true);
+            GameManager.Instance.pauseGame();
+            var buttons = pausedMenu.GetComponentsInChildren<Button>();
+            foreach (var button in buttons)
+            {
+                if (button.name == "Continue")
+                {                  
+                    EventSystem.current.SetSelectedGameObject(button.gameObject);
+                    break;
+                }
+            }
         }
-        //desable UI control
+        //disable UI control
+    }
+
+    public void showGameOver()
+    {
+        if (gameOverPanel.gameObject.activeSelf)//hide
+        {
+            gameOverPanel.gameObject.SetActive(false);
+        }
+        else//show
+        {
+            gameOverPanel.gameObject.SetActive(true);
+            var buttons = gameOverPanel.gameObject.GetComponentsInChildren<Button>();
+            foreach (var button in buttons)
+            {
+                if (button.name == "Restart")
+                {
+                    EventSystem.current.SetSelectedGameObject(button.gameObject);
+                    break;
+                }
+            }
+        }
     }
 }
 

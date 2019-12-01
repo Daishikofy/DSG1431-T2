@@ -6,6 +6,8 @@ using UnityEngine.UI;
 	
     public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
+
     [SerializeField]
     private Player player;
     [SerializeField]
@@ -14,11 +16,25 @@ using UnityEngine.UI;
     private int firstSceneIndex = 2;
     [SerializeField]
     private Image gameOverPanel;
+    private UIController uiController;
 
     private int loadedLevelBuildIndex = 0;
 
     private CatsInput controller;
     private bool isPaused = false;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+    public static GameManager Instance { get{ return instance; } }
     void Start()
     {
         Scene loadedLevel = SceneManager.GetSceneByBuildIndex(firstSceneIndex);
@@ -34,9 +50,10 @@ using UnityEngine.UI;
         gameOverPanel.gameObject.SetActive(false);
         player.Ko.AddListener(gameOver);
 
-        controller = new CatsInput();
-        controller.Player.Restart.Enable();
-        controller.Player.Restart.performed += context => pauseGame();
+        //controller = new CatsInput();
+
+
+        uiController = FindObjectOfType<UIController>();           
     }
 
     public void changeLevel(int levelIndex)
@@ -107,7 +124,7 @@ using UnityEngine.UI;
 
     private void gameOver()
     {
-        gameOverPanel.gameObject.SetActive(true);
+        uiController.showGameOver();
     }
 
     public void resetGame()
@@ -115,7 +132,7 @@ using UnityEngine.UI;
         changeLevel(firstSceneIndex);
         //TODO: Have a true variable for the player's position
         player.reset();
-        gameOverPanel.gameObject.SetActive(false);
+        uiController.showGameOver();
     }
 
     public void mainMenu()
@@ -131,17 +148,20 @@ using UnityEngine.UI;
        // SceneManager.SetActiveScene(mainMenu);
     }
 
-    private void pauseGame()
+    public void pauseGame()
     {
+        Debug.Log("PAUSE");
         if (isPaused)
-        {
+        {//Unpaused
             isPaused = false;      
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
+            player.enableController(true);
         }
         else
-        {
+        {//Paused
             isPaused = true;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
+            player.enableController(false);
         }
     }
 }

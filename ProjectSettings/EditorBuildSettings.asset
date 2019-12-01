@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Dungeon1.unity
     guid: 7c2913fa224aff5479528169e84995cb
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: db610e80fe5cfee40b9815b0a8f49e61
   m_configObjects: {}

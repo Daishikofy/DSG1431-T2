@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class Player : Fighter
 {
     private Animator animator;
-    private int lastAttack;   
+    private int lastAttack;
     private CatsInput controller;
     private int stop = 0;
     [HideInInspector]
@@ -28,7 +28,7 @@ public class Player : Fighter
         controller.Player.AttackB.performed += context => useAttackB();
         controller.Player.AttackX.performed += context => useAttackX();
         controller.Player.AttackY.performed += context => useAttackY();
-		controller.Player.Interact.performed += context => interact();
+        controller.Player.Interact.performed += context => interact();
         controller.Player.PrepAttack.performed += context => prepAttack();
     }
     protected override void Start()
@@ -77,7 +77,7 @@ public class Player : Fighter
                     moveSet[lastAttack].use(this);
                     timeFromLastAttack = 0;
                 }
-                lastAttack = -1;           
+                lastAttack = -1;
             }
         }
 
@@ -86,7 +86,7 @@ public class Player : Fighter
 
         if (movement.x != 0 || movement.y != 0)
         {
-            direction = movement;           
+            direction = movement;
             if (!isMoving)
             {
                 animator.SetFloat("Move X", direction.x);
@@ -94,7 +94,7 @@ public class Player : Fighter
             }
         }
         animator.SetBool("Moving", isMoving);
-        
+
         if (stop <= 0)
         {
             Fighter obj;
@@ -120,13 +120,23 @@ public class Player : Fighter
 
     public void reset()
     {
-        currentCell = new Vector2(4,5);
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+        currentCell = new Vector2(4, 5);
         transform.position = currentCell;
         grid.placeInGrid(currentCell, this.gameObject);
         if (isKo)
             isKo = false;
         setLife(maxLife);
         setMana(maxMana);
+    }
+
+    public void enableController(bool value)
+    {
+        if (value)
+            controller.Enable();
+        else
+            controller.Disable();
     }
 
     private void useAttackA()
