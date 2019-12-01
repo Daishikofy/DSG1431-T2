@@ -162,6 +162,7 @@ using UnityEngine.UI;
             isPaused = true;
             //Time.timeScale = 0;
             player.enableController(false);
+            player.stopForFrames(1);
         }
     }
 }

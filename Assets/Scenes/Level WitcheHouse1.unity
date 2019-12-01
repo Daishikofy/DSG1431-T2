@@ -3277,7 +3277,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2007529027}
   m_Father: {fileID: 1750441859}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3302,6 +3303,7 @@ MonoBehaviour:
   - It worked!!!
   - I am now free to take my revange!!
   - '!!! MIAAHAHAHAHAHAHAW !!!'
+  laterSentences2: []
 --- !u!212 &1661621890
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3443,6 +3445,114 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2007529026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1661621888}
+    m_Modifications:
+    - target: {fileID: 3710909002135664883, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_Name
+      value: SmallKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730704820686605281, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+        type: 3}
+      propertyPath: itemName
+      value: HiddenKey
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8275654432604501652, guid: 07b06101a3e1d5a4fbd2c9ff6464674c, type: 3}
+    - {fileID: 8730704820686605281, guid: 07b06101a3e1d5a4fbd2c9ff6464674c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 07b06101a3e1d5a4fbd2c9ff6464674c, type: 3}
+--- !u!4 &2007529027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5763284826636114810, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2007529026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2007529028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3710909002135664883, guid: 07b06101a3e1d5a4fbd2c9ff6464674c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2007529026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2007529029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007529028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ee047084243d844924089789a034c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: HiddenKey
+  dialogue:
+    name: Cssandra
+    sentences:
+    - Oh no !
+    - My spectral body is stuck into this house!! I can't leave ...
+    - ~~ sight ~~
+    - Haunting my own house for enternity, what a miserable ending.
 --- !u!1 &2033747429
 GameObject:
   m_ObjectHideFlags: 0

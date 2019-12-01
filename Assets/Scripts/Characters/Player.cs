@@ -122,6 +122,7 @@ public class Player : Fighter
 
     public void stopForFrames(int frames)
     {
+        movement = Vector2Int.zero;
         stop = frames;
     }
 

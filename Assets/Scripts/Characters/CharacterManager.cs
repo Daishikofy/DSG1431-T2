@@ -21,13 +21,11 @@ public class CharacterManager : MonoBehaviour
         currentLayer = skinName;
  
         if (skinName == "cat")
-        {
-            player.GetComponent<Collider2D>().enabled = true;
+        {  
             player.restrictController(false);
         }
         else
         {
-            player.GetComponent<Collider2D>().enabled = false;
             player.restrictController(true);
         }
     }
