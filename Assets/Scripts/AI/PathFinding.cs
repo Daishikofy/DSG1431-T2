@@ -35,8 +35,24 @@ public class PathFinding
 
     private System.Random Rand;
 
-    public PathFinding(int attackRange, int seekRange, Point patrolWalkDistance, Point patrolStartPosition, Point baseLeft, Point topRight, PatrolDirection startDirection)
+    private Point VectorToPoint(Vector2Int vector)
     {
+        var point = new Point(vector.x, vector.y);
+        return point;
+    }
+    public PathFinding(int attackRange
+                      ,int seekRange
+                      , Vector2Int _patrolWalkDistance
+                      , Vector2Int _patrolStartPosition
+                      , Vector2Int _baseLeft
+                      , Vector2Int _topRight
+                      , PatrolDirection startDirection)
+    {
+        Point patrolWalkDistance = VectorToPoint(_patrolWalkDistance);
+        Point patrolStartPosition = VectorToPoint(_patrolStartPosition);
+        Point baseLeft = VectorToPoint(_baseLeft);
+        Point topRight = VectorToPoint(_topRight);
+
         AttackRange = attackRange;
         SeekRange = seekRange;
         State = MovementState.Patrol;
@@ -54,8 +70,11 @@ public class PathFinding
         Rand = new System.Random();
     }
 
-    public Point DefineDirection(DynamicGrid grid, Point currentPos, Point playerPos)
+    public Vector2Int DefineDirection(DynamicGrid grid, Vector2Int _currentPos, Vector2Int _playerPos)
     {
+        var currentPos = VectorToPoint(_currentPos);
+        var playerPos = VectorToPoint(_playerPos);
+
         var lastPlayerPos = PlayerPos;
         var lastState = State;
         bool wasChassingPlayer = State == MovementState.MoveAttackPosition || State == MovementState.Seek;
@@ -75,15 +94,21 @@ public class PathFinding
         {
             var direction = ContinuePath();
             if (!PointIsInvalid(direction))
-                return direction;
+                return new Vector2Int(direction.X, direction.Y);
         }
 
         followingAStar = false;
 
         if (State == MovementState.Attack)
-            return AttackPosition();
+        {
+            Point attackPosition = AttackPosition();
+            return new Vector2Int(attackPosition.X, attackPosition.Y);
+        }
         else if (State == MovementState.Patrol)
-            return PatrolMovement();
+        {
+            Point patrolMovement = PatrolMovement(); 
+            return new Vector2Int(patrolMovement.X, patrolMovement.Y);
+        }
         else
         {
             Point direction, destination;
@@ -106,11 +131,11 @@ public class PathFinding
             if (PointIsInvalid(direction))
             {
                 direction = AStar(destination);
-                if(!PointIsInvalid(direction))
+                if (!PointIsInvalid(direction))
                     followingAStar = true;
             }
 
-            return direction;
+            return new Vector2Int(direction.X, direction.Y);
         }
 
     }
