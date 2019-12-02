@@ -49,9 +49,9 @@ public class MovementControl : Movable
             if (direction.x != -1 || direction.y != -1)
             {
                 if (controlador.State == MovementState.Attack)
-                    goTo(new Vector2(direction.X, direction.Y));
+                    goTo(direction);
                 else
-                    goTo(new Vector2(direction.x, direction.y));
+                    goTo(direction);
 
             }
         }
