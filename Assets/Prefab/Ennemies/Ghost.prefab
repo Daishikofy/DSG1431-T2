@@ -253,7 +253,7 @@ MonoBehaviour:
   speed: 0
   currentSpeed: 0
   currentCell: {x: 0, y: 0}
-  AttackRange: 2
+  AttackRange: 1
   SeekRange: 5
   PatrolWalkDistance: {x: 4, y: 0}
   PatrolStartPosition: {x: 3, y: 6}

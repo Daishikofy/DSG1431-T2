@@ -51,7 +51,7 @@ public class MovementControl : Movable
             if (direction.X != -1 || direction.Y != -1)
             {
                 if (controlador.State == MovementState.Attack)
-                    Debug.Log("Ataquei");
+                    goTo(new Vector2(direction.X, direction.Y));
                 else
                     goTo(new Vector2(direction.X, direction.Y));
 
