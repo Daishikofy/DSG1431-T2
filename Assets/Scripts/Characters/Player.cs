@@ -44,7 +44,7 @@ public class Player : Fighter
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (isKo) return;
         base.Update();
@@ -113,6 +113,12 @@ public class Player : Fighter
         }
         else
             stop--;
+    }
+
+    public override void OnDamaged(int damage, Element element)
+    {
+        base.OnDamaged(damage, element);
+        animator.SetTrigger("Damaged");
     }
 
     public void changeLevel(Vector2 position)

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2929423720645263092}
   - component: {fileID: 2929423720645263099}
-  - component: {fileID: 2929423720645263093}
   - component: {fileID: 4918977938617629755}
+  - component: {fileID: 7793881425048320729}
   m_Layer: 0
-  m_Name: BadCatholder
+  m_Name: YellowGhost
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,9 +71,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5785189211113082215, guid: 7ffe7cecadb62194b9dec1ca5ad74cd1,
+  m_Sprite: {fileID: -1790789887694606781, guid: 6de0f138e9c65ca40bf87fd0c02bebfb,
     type: 3}
-  m_Color: {r: 0.2028302, g: 0.7769611, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.689274, b: 0.4481132, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,16 +83,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2929423720645263093
+--- !u!114 &4918977938617629755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2929423720645263097}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a90a256b9ded0c54faabc2dad90c9967, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cdadfc07c532684fb6d99fdacc68f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
@@ -113,8 +113,7 @@ MonoBehaviour:
   currentCombo: 0
   timeFromLastAttack: 0
   comboTiming: 0
-  floatingText: {fileID: 5628849307563013060, guid: 31b4183d359582944be6f0cecf010e5f,
-    type: 3}
+  floatingText: {fileID: 0}
   stagger: 0.25
   moveSet: []
   updateLifeUI:
@@ -129,28 +128,6 @@ MonoBehaviour:
   Ko:
     m_PersistentCalls:
       m_Calls: []
-  minMax: {x: -2, y: 2}
-  axe: 120
-  markedTime: 2
---- !u!114 &4918977938617629755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2929423720645263097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdadfc07c532684fb6d99fdacc68f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMoving: 0
-  onCooldown: 0
-  onExit: 0
-  coolDown: 0.2
-  speed: 8
-  currentSpeed: 0.1
-  currentCell: {x: 0, y: 0}
   AttackRange: 1
   SeekRange: 3
   PatrolWalkDistance: {x: 1, y: 1}
@@ -158,3 +135,24 @@ MonoBehaviour:
   BaseLeft: {x: 0, y: 0}
   TopRight: {x: 10, y: 10}
   startDirection: 0
+  currentPos: {x: 0, y: 0}
+  playerPos: {x: 0, y: 0}
+--- !u!95 &7793881425048320729
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929423720645263097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e7d0f2bc7a97894f8dc23fa1ed468b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -1,7 +1,7 @@
 ﻿//using System.Drawing;
 using UnityEngine;
 
-public class MovementControl : Movable
+public class MovementControl : Fighter
 {
     public int AttackRange;
     public int SeekRange;
@@ -19,6 +19,8 @@ public class MovementControl : Movable
 
     private float pathFindingCooldown;
     private bool onPathFindingCooldown = false;
+
+    protected Vector2Int direction;
     protected override void Start()
     {
         var patrolWalkDistance = new Vector2Int((int)PatrolWalkDistance.x, (int)PatrolWalkDistance.y);
@@ -35,8 +37,9 @@ public class MovementControl : Movable
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         //if (!onPathFindingCooldown)
         //{
         if (!isMoving && !onCooldown)
@@ -45,14 +48,16 @@ public class MovementControl : Movable
             pathFindingCooldown = 0.2f;
             currentPos = new Vector2Int((int)transform.position.x, (int)transform.position.y);
             playerPos = new Vector2Int((int)player.transform.position.x, (int)player.transform.position.y);
-            Vector2Int direction = controlador.DefineDirection(grid, currentPos, playerPos);
+            direction = controlador.DefineDirection(grid, currentPos, playerPos);
             if (direction.x != -1 || direction.y != -1)
             {
+                Fighter obj;
                 if (controlador.State == MovementState.Attack)
-                    goTo(direction);
+                    obj = goTo(direction);
                 else
-                    goTo(direction);
-
+                    obj = goTo(direction);
+                if (obj != null && obj.CompareTag("Player"))
+                    obj.OnDamaged(1, Element.None);
             }
         }
         //}
@@ -79,5 +84,8 @@ public class MovementControl : Movable
         Gizmos.DrawLine(TopRight, baseRight);
         Gizmos.DrawLine(BaseLeft, topLeft);
         Gizmos.DrawLine(BaseLeft, baseRight);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(PatrolStartPosition, 0.1f);
     }
 }

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Ghost : Ennemy
+public class Ghost : MovementControl
 {
     // Start is called before the first frame update
     private Animator animator;
@@ -15,7 +13,8 @@ public class Ghost : Ennemy
     // Update is called once per frame
     protected override void Update()
     {
-        animator.SetFloat("X", (float)wDirection);
+        if (direction.x != 0)
+            animator.SetFloat("X", (float)direction.x);
         base.Update();   
     }
 }

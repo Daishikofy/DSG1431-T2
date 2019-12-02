@@ -928,6 +928,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946058221}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_Name
@@ -991,11 +995,6 @@ PrefabInstance:
     - target: {fileID: 2929423720645263092, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11876,10 +11875,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946058221}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: axe
+      value: 121
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minMax.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stagger
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minMax.x
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_Name
-      value: BadCatholder
+      value: YellowGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263092, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -11935,26 +11955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: axe
-      value: 121
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: minMax.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: stagger
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: minMax.x
-      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -13829,10 +13829,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946058221}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: stagger
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minMax.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minMax.y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: coolDown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_Name
-      value: BadCatholder 2
+      value: YellowGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263092, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -13888,26 +13909,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: stagger
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: minMax.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: minMax.y
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: coolDown
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -51345,6 +51346,32 @@ MonoBehaviour:
   speed: 3
   currentSpeed: 0
   currentCell: {x: 0, y: 0}
+  maxLife: 0
+  currentLife: 0
+  maxMana: 0
+  currentMana: 0
+  manaCoolDown: 0
+  magicPower: 0
+  physicPower: 0
+  combo: 0
+  currentCombo: 0
+  timeFromLastAttack: 0
+  comboTiming: 0
+  floatingText: {fileID: 0}
+  stagger: 0.25
+  moveSet: []
+  updateLifeUI:
+    m_PersistentCalls:
+      m_Calls: []
+  updateManaUI:
+    m_PersistentCalls:
+      m_Calls: []
+  updateComboUI:
+    m_PersistentCalls:
+      m_Calls: []
+  Ko:
+    m_PersistentCalls:
+      m_Calls: []
   AttackRange: 1
   SeekRange: 3
   PatrolWalkDistance: {x: 1, y: 0}
@@ -51352,6 +51379,8 @@ MonoBehaviour:
   BaseLeft: {x: 3, y: -4}
   TopRight: {x: 5, y: -2}
   startDirection: 0
+  currentPos: {x: 0, y: 0}
+  playerPos: {x: 0, y: 0}
 --- !u!4 &980736649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2302724616293787160, guid: 2fbd298d570737a48a1be47f2d0b4867,
@@ -52994,7 +53023,7 @@ PrefabInstance:
     - target: {fileID: 3964451322344780090, guid: 262cf10c547522845903209c4569b1e0,
         type: 3}
       propertyPath: m_Name
-      value: Destructible (1)
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 3964451322344780089, guid: 262cf10c547522845903209c4569b1e0,
         type: 3}
@@ -53744,7 +53773,7 @@ PrefabInstance:
     - target: {fileID: 3964451322344780090, guid: 262cf10c547522845903209c4569b1e0,
         type: 3}
       propertyPath: m_Name
-      value: Destructible (2)
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 3964451322344780089, guid: 262cf10c547522845903209c4569b1e0,
         type: 3}
@@ -54682,10 +54711,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946058221}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: coolDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: onCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stagger
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_Name
-      value: BadCatholder
+      value: YellowGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263092, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -54740,31 +54794,6 @@ PrefabInstance:
     - target: {fileID: 2929423720645263092, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: coolDown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: onCooldown
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: stagger
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: speed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
@@ -55996,10 +56025,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946058221}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: minMax.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minMax.y
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
       propertyPath: m_Name
-      value: BadCatholder
+      value: YellowGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929423720645263097, guid: 968c6e18460dde24bb5f55e02cc661ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929423720645263092, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -56055,16 +56097,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: minMax.x
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929423720645263093, guid: 968c6e18460dde24bb5f55e02cc661ed,
-        type: 3}
-      propertyPath: minMax.y
-      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4918977938617629755, guid: 968c6e18460dde24bb5f55e02cc661ed,
         type: 3}
@@ -57120,7 +57152,7 @@ PrefabInstance:
     - target: {fileID: 3964451322344780090, guid: 262cf10c547522845903209c4569b1e0,
         type: 3}
       propertyPath: m_Name
-      value: Destructible
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 3964451322344780089, guid: 262cf10c547522845903209c4569b1e0,
         type: 3}
@@ -59602,6 +59634,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1327887125529610, guid: cd88d2da1cba28445958521232fb5377, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327887125529610, guid: cd88d2da1cba28445958521232fb5377, type: 3}
+      propertyPath: coolDown
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd88d2da1cba28445958521232fb5377, type: 3}
 --- !u!1001 &8220351306285642945
@@ -59771,6 +59811,56 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: AttackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: SeekRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolWalkDistance.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolStartPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: PatrolStartPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: BaseLeft.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: BaseLeft.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: TopRight.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: TopRight.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850676275895348131, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: startDirection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
         type: 3}
       propertyPath: coolDown
@@ -59790,6 +59880,11 @@ PrefabInstance:
         type: 3}
       propertyPath: PatrolStartPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917829598590712075, guid: e28668a438149bd4c8c5088db5021c07,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7170303796695618719, guid: e28668a438149bd4c8c5088db5021c07,
         type: 3}

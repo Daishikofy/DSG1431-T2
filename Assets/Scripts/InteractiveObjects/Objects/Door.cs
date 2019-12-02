@@ -17,6 +17,7 @@ public class Door : SolidInteractiveObject
         {
             player.inventory.removeItem(keyName);
             StartCoroutine("fadeOut");
+            FindObjectOfType<DynamicGrid>().removeFromGrid(this.transform.position);
         }
     }
 
@@ -36,6 +37,6 @@ public class Door : SolidInteractiveObject
             
             yield return null;
         }
-        FindObjectOfType<DynamicGrid>().removeFromGrid(this.transform.position);
+        
     }
 }
