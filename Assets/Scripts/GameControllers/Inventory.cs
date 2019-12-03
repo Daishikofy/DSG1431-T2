@@ -24,4 +24,9 @@ public class Inventory : MonoBehaviour
     {
         return itens.Contains(name);
     }
+
+    public void clearAllItems()
+    {
+        itens = new List<string>();
+    }
 }

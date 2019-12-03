@@ -75,7 +75,6 @@ public abstract class Attack : ScriptableObject
         }
         else
             character.addCombo();
-        target.OnDamaged(damages, element);
-        
+        target.OnDamaged(damages, element);      
     }
 }

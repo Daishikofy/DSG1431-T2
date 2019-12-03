@@ -21,6 +21,10 @@ public class Torch : SolidInteractiveObject, IDamageable
             else
                 animator.SetBool("Activated", false);
         }
+        else
+        {
+            animator.SetBool("Activated", true);
+        }
 
         base.Start();
     }

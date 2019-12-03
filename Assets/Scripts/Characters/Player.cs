@@ -32,13 +32,14 @@ public class Player : Fighter
         controller.Player.AttackY.performed += context => useAttackY();
         controller.Player.Interact.performed += context => interact();
         controller.Player.PrepAttack.performed += context => prepAttack();
+        animator = GetComponent<Animator>();
+
+        characterManager.changeSkin("witche", this);
     }
     protected override void Start()
     {
-        animator = GetComponent<Animator>();
-
-        //characterManager.changeSkin("witche", this);
-
+        
+        direction.y = -1;
         lastAttack = -1;
         base.Start();
     }
@@ -136,11 +137,16 @@ public class Player : Fighter
 
     public void reset()
     {
+        //TODO: We don't like hard code
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
-        currentCell = new Vector2(4, 5);
+
+        currentCell = new Vector2(-3, 3);
         transform.position = currentCell;
         grid.placeInGrid(currentCell, this.gameObject);
+
+        characterManager.changeSkin("witche", this);
+        inventory.clearAllItems();
         if (isKo)
             isKo = false;
         setLife(maxLife);

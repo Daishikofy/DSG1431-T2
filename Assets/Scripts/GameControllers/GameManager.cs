@@ -16,8 +16,10 @@ using UnityEngine.UI;
     private int firstSceneIndex = 2;
     [SerializeField]
     private Image gameOverPanel;
+    [SerializeField]
     private UIController uiController;
 
+    private int mainSceneIndex = 1;
     private int loadedLevelBuildIndex = 0;
 
     private CatsInput controller;
@@ -51,9 +53,9 @@ using UnityEngine.UI;
         player.Ko.AddListener(gameOver);
 
         //controller = new CatsInput();
-
-
-        uiController = FindObjectOfType<UIController>();           
+        //uiController = FindObjectOfType<UIController>();
+        if (uiController == null)
+            Debug.Log("nao foi carregado");
     }
 
     public void changeLevel(int levelIndex)
@@ -72,7 +74,7 @@ using UnityEngine.UI;
 
         Debug.Log("loadedLevelBuildIndex: " + loadedLevelBuildIndex + " - levelBuildIndex: " + levelBuildIndex);
 
-        if (loadedLevelBuildIndex > 0 && loadedLevelBuildIndex != levelBuildIndex)
+        if (loadedLevelBuildIndex != mainSceneIndex && loadedLevelBuildIndex != levelBuildIndex)
          yield return SceneManager.UnloadSceneAsync(loadedLevelBuildIndex);
 
         if (loadedLevelBuildIndex != levelBuildIndex)
@@ -124,15 +126,22 @@ using UnityEngine.UI;
 
     private void gameOver()
     {
+        Debug.Log("Show gameOver");
         uiController.showGameOver();
     }
 
     public void resetGame()
     {
+        if (firstSceneIndex == loadedLevelBuildIndex)
+        {            
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            loadedLevelBuildIndex = mainSceneIndex;           
+        }
         changeLevel(firstSceneIndex);
-        //TODO: Have a true variable for the player's position
+        //TODO: Have a true variable for the player's position   
         player.reset();
-        uiController.showGameOver();
+        if (uiController != null)
+            uiController.showGameOver();
     }
 
     public void mainMenu()

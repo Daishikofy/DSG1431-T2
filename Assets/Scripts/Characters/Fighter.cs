@@ -134,12 +134,12 @@ public class Fighter : Movable, IDamageable
     {
         setLife(0);
         isKo = true;
+        Ko.Invoke();
         //For Debug purpose
         //GetComponent<SpriteRenderer>().color = Color.black;
         //TODO - Animator: deathAnimation
         Debug.Log("Knock out: " + this.gameObject.name);
         grid.removeFromGrid(currentCell);
-        Ko.Invoke();
         this.gameObject.SetActive(false);
     }
 

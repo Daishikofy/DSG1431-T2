@@ -1212,7 +1212,18 @@
                 {
                     "name": "",
                     "id": "3934dc2e-1100-4c77-bb0d-6af3840f05d0",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dc762e7-536f-4943-9588-c3927cc0b31b",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
