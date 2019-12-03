@@ -55,12 +55,15 @@ public class Fighter : Movable, IDamageable
     public IntEvent updateManaUI;
     [SerializeField]
     public IntEvent updateComboUI;
+
     protected Vector2Int direction;
     protected Vector2Int movement;
 
     protected bool isKo = false;
     [HideInInspector]
     public UnityEvent Ko;
+
+    protected Animator animator;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -125,7 +128,8 @@ public class Fighter : Movable, IDamageable
         Debug.Log("On damage");
         if (floatingText)
             ShowFloatingText(damage);
-        //TODO animator: Blink
+        if (animator != null)
+            animator.SetTrigger("Damaged");
         addLife(damage * -1);
         stagged = true;
     }

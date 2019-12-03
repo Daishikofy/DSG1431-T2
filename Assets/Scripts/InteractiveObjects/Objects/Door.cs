@@ -7,6 +7,8 @@ public class Door : SolidInteractiveObject
     SpriteRenderer renderer;
     [SerializeField]
     string keyName = "None";
+    [SerializeField]
+    bool useObject;
 
     bool opening = false;
     public override void onInteraction(Player player)
@@ -15,7 +17,8 @@ public class Door : SolidInteractiveObject
         base.onInteraction(player);
         if (keyName == "None" || player.inventory.containsItem(keyName))
         {
-            player.inventory.removeItem(keyName);
+            if (useObject)
+                player.inventory.removeItem(keyName);
             StartCoroutine("fadeOut");
             FindObjectOfType<DynamicGrid>().removeFromGrid(this.transform.position);
         }
@@ -38,5 +41,16 @@ public class Door : SolidInteractiveObject
             yield return null;
         }
         
+    }
+
+    public void open()
+    {
+        StartCoroutine("fadeOut");
+        FindObjectOfType<DynamicGrid>().removeFromGrid(this.transform.position);
+    }
+
+    public void close()
+    {
+        FindObjectOfType<DynamicGrid>().placeInGrid(this.transform.position, this.gameObject);
     }
 }

@@ -7,6 +7,7 @@ public class ScareCrow : Fighter
     // Start is called before the first frame update
     protected override void Start()
     {
+        animator.GetComponent<Animator>();
         base.Start(); 
     }
 
@@ -19,7 +20,7 @@ public class ScareCrow : Fighter
 
     public override void OnDamaged(int damage, Element element)
     {
-        GetComponent<Animator>().SetTrigger("Damaged");
+        animator.SetTrigger("Damaged");
         base.OnDamaged(damage, element);
     }
 }

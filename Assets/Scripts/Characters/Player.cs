@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class Player : Fighter
 {
-    private Animator animator;
     private int lastAttack;
     private CatsInput controller;
     private int stop = 0;
@@ -114,12 +113,6 @@ public class Player : Fighter
         }
         else
             stop--;
-    }
-
-    public override void OnDamaged(int damage, Element element)
-    {
-        base.OnDamaged(damage, element);
-        animator.SetTrigger("Damaged");
     }
 
     public void changeLevel(Vector2 position)

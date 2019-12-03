@@ -20,7 +20,7 @@ public class MovementControl : Fighter
     private float pathFindingCooldown;
     private bool onPathFindingCooldown = false;
 
-    protected Vector2Int direction;
+   // protected Vector2Int pathDirection;
     protected override void Start()
     {
         var patrolWalkDistance = new Vector2Int((int)PatrolWalkDistance.x, (int)PatrolWalkDistance.y);

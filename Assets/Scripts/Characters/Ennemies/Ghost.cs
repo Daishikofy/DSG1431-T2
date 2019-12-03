@@ -3,7 +3,6 @@
 public class Ghost : MovementControl
 {
     // Start is called before the first frame update
-    private Animator animator;
     protected override void Start()
     {
         animator = GetComponent<Animator>();
