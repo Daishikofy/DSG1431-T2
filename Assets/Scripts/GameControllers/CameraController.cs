@@ -11,13 +11,16 @@ public class CameraController : MonoBehaviour
     private Vector3 previousPos;
     void Start()
     {
-        player = FindObjectOfType<Player>().gameObject;
+        var aux = FindObjectOfType<Player>();
+        if (aux == null) return;
+        player = aux.gameObject;
         this.transform.position += player.transform.position + offset;
         previousPos = player.transform.position;
     }
 
     void LateUpdate()
     {
+        if (player == null) return;
         if (distancePlayerCamera())
             transform.position += (player.transform.position - previousPos);
         previousPos = player.transform.position;

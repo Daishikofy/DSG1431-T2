@@ -116,7 +116,7 @@ public class Movable : MonoBehaviour
 
         while (sqrRemainingDistance > float.Epsilon)
         {
-            Vector3 newPosition = Vector3.MoveTowards(transform.position, end, currentSpeed/2 * Time.deltaTime);
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, end, currentSpeed/1.5f * Time.deltaTime);
             transform.position = newPosition;
             sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
@@ -126,7 +126,7 @@ public class Movable : MonoBehaviour
         sqrRemainingDistance = (transform.position - originalPos).sqrMagnitude;
         while (sqrRemainingDistance > float.Epsilon)
         {
-            Vector3 newPosition = Vector3.MoveTowards(transform.position, originalPos, currentSpeed/2 * Time.deltaTime);
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, originalPos, currentSpeed/1.5f * Time.deltaTime);
             transform.position = newPosition;
             sqrRemainingDistance = (transform.position - originalPos).sqrMagnitude;
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +20,9 @@ public class DialogueManager : MonoBehaviour
     private Image dialogueBox;
     [SerializeField]
     private Button button;
+
+    public UnityEvent startDialogue;
+    public UnityEvent endedDialogue;
 
     private void Awake()
     {
@@ -44,8 +48,10 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        
         animator.SetBool("IsOpen", true);
-        GameManager.Instance.pauseGame();
+        //GameManager.Instance.pauseGame();
+        startDialogue.Invoke();
 
         EventSystem.current.SetSelectedGameObject(button.gameObject);
         sentences.Clear();
@@ -60,6 +66,7 @@ public class DialogueManager : MonoBehaviour
 
     public void displayNextSentence()
     {
+        //Audio sound - validate
         if (sentences.Count == 0)
         {
             endDialogue();
@@ -77,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         string displayed = "";
         foreach (var letter in sentence)
         {
+            //Audio - Sound letter typing
             displayed += letter;
             text.text = displayed;
             yield return null;
@@ -85,8 +93,9 @@ public class DialogueManager : MonoBehaviour
 
     private void endDialogue()
     {
+        endedDialogue.Invoke();
         animator.SetBool("IsOpen", false);
         EventSystem.current.SetSelectedGameObject(null);
-        GameManager.Instance.pauseGame();
     }
+
 }

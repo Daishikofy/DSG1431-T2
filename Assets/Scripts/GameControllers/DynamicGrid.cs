@@ -52,6 +52,7 @@ public class DynamicGrid : MonoBehaviour
 
     public Vector2 placeInGrid(Vector2 position, GameObject gameObject)
     {
+        if (gameObject == null) return Vector2.zero;
         position.x = (int)position.x;
         position.y = (int)position.y;
         if (!dynamicGrid.ContainsKey(position))
@@ -60,7 +61,8 @@ public class DynamicGrid : MonoBehaviour
             Debug.Log("position in dynamic grid: " + position + " - " + gameObject.name);
         }
         else
-            Debug.LogError(gameObject.name + " - Another item is already on the grid: " + dynamicGrid[position].name);
+            if (gameObject == null)
+                Debug.LogError(gameObject.name + " - Another item is already on the grid: " + dynamicGrid[position].name);
 
         return position;
     }
@@ -74,7 +76,7 @@ public class DynamicGrid : MonoBehaviour
             dynamicGrid.Remove(position);
         }
         else
-            Debug.LogError("Couldn't find object in position " + position);
+            Debug.Log("Couldn't find object in position " + position);
     }
 
     public bool cellIsEmpty(Vector2 cell)

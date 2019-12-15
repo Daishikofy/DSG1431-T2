@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class BossFight : Puzzles
 {
     bool playerEntered = false;
-
+    [SerializeField]
+    AudioClip battleTheme;
+    [SerializeField]
+    AudioClip dungeonTheme;
     [SerializeField]
     Door door;
     [SerializeField]
@@ -16,6 +20,8 @@ public class BossFight : Puzzles
     Image bossUI;
     [SerializeField]
     Image lifeBar;
+
+    public GameObject endGame;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +46,7 @@ public class BossFight : Puzzles
         //Audio - music: End boss battle, start dungeon
         door.open();
         bossUI.gameObject.SetActive(false);
-        
+        AudioManager.instance.PlayMusic(dungeonTheme);
         completed();
     }
 
@@ -56,6 +62,7 @@ public class BossFight : Puzzles
         playerEntered = true;
         boss.enabled = true;
         bossUI.gameObject.SetActive(true);
+        AudioManager.instance.PlayMusic(battleTheme);
     }
 
 }

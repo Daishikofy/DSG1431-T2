@@ -39,6 +39,7 @@ public class Player : Fighter
     {
         
         direction.y = -1;
+        animator.SetFloat("Move Y", direction.y);
         lastAttack = -1;
         base.Start();
     }
@@ -130,18 +131,19 @@ public class Player : Fighter
 
     public void reset()
     {
+        if (isKo)
+            isKo = false;
         //TODO: We don't like hard code
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
-
+        grid.removeFromGrid(currentCell);
         currentCell = new Vector2(-3, 3);
         transform.position = currentCell;
         grid.placeInGrid(currentCell, this.gameObject);
 
         characterManager.changeSkin("witche", this);
+
         inventory.clearAllItems();
-        if (isKo)
-            isKo = false;
         setLife(maxLife);
         setMana(maxMana);
     }
@@ -156,6 +158,7 @@ public class Player : Fighter
 
     public void restrictController(bool value)
     {
+        Debug.Log("controller restruction: " + value);
         if (value)
         {
             controller.Player.AttackA.Disable();
@@ -204,6 +207,7 @@ public class Player : Fighter
 
     private void horizontal(float value)
     {
+        //Debug.Log("horizontal");
         if (value == 0 && movement.y != 0)
             return;
 
@@ -223,6 +227,7 @@ public class Player : Fighter
 
     private void vertical (float value)
     {
+        //Debug.Log("vertical");
         if (value == 0 && movement.x != 0)
             return;
         if (changeDirection && value != 0)

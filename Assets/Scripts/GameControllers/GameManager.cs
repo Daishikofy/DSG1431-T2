@@ -13,18 +13,19 @@ using UnityEngine.UI;
     [SerializeField]
     private Image transition;
     [SerializeField]
-    private int firstSceneIndex = 2;
+    private int firstSceneIndex = 3;
     [SerializeField]
     private Image gameOverPanel;
     [SerializeField]
     private UIController uiController;
-
+    [SerializeField]
+    private AudioClip[] musics;
     private int mainSceneIndex = 1;
-    private int loadedLevelBuildIndex = 0;
+    private int loadedLevelBuildIndex = 1;
 
     private CatsInput controller;
     private bool isPaused = false;
-
+    private bool isGameOver = false;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -52,6 +53,9 @@ using UnityEngine.UI;
         gameOverPanel.gameObject.SetActive(false);
         player.Ko.AddListener(gameOver);
 
+        DialogueManager.Instance.startDialogue.AddListener(pauseGame);
+        DialogueManager.Instance.endedDialogue.AddListener(pauseGame);
+
         //controller = new CatsInput();
         //uiController = FindObjectOfType<UIController>();
         if (uiController == null)
@@ -67,15 +71,15 @@ using UnityEngine.UI;
     IEnumerator LoadLevel(int levelBuildIndex)
     {
         enableGame(false);
-
+        AudioManager.instance.PlayMusic(musics[levelBuildIndex - 2]);
         Color color = transition.color;
         color.a = 1f;
         transition.color = color;
 
         Debug.Log("loadedLevelBuildIndex: " + loadedLevelBuildIndex + " - levelBuildIndex: " + levelBuildIndex);
 
-        if (loadedLevelBuildIndex != mainSceneIndex && loadedLevelBuildIndex != levelBuildIndex)
-         yield return SceneManager.UnloadSceneAsync(loadedLevelBuildIndex);
+        if (loadedLevelBuildIndex != mainSceneIndex /*&& loadedLevelBuildIndex != levelBuildIndex*/)
+            yield return SceneManager.UnloadSceneAsync(loadedLevelBuildIndex);
 
         if (loadedLevelBuildIndex != levelBuildIndex)
         { 
@@ -94,6 +98,7 @@ using UnityEngine.UI;
 
         enableGame(true);
         GetComponent<DynamicGrid>().loadObstacles();
+        Debug.Log("Load over");
     }
 
     public IEnumerator fadeOut()
@@ -110,7 +115,7 @@ using UnityEngine.UI;
 
     public IEnumerator fadeIn()
     {
-        while (transition.color.a < 0)
+        while (transition.color.a < 1)
         {
             Color color = transition.color;
             color.a += 0.1f;
@@ -126,22 +131,61 @@ using UnityEngine.UI;
 
     private void gameOver()
     {
-        Debug.Log("Show gameOver");
+        isGameOver = true;
         uiController.showGameOver();
     }
 
     public void resetGame()
     {
-        if (firstSceneIndex == loadedLevelBuildIndex)
-        {            
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            loadedLevelBuildIndex = mainSceneIndex;           
-        }
-        changeLevel(firstSceneIndex);
-        //TODO: Have a true variable for the player's position   
-        player.reset();
-        if (uiController != null)
+ 
+        StartCoroutine(ressetingProcess());
+    }
+
+    private IEnumerator ressetingProcess()
+    {
+        yield return StartCoroutine(fadeIn());
+        
+        if (uiController != null && isGameOver)
+        {
             uiController.showGameOver();
+            isGameOver = false;
+        }
+
+        if (firstSceneIndex == loadedLevelBuildIndex)
+        {
+            //Debug.Log("1-firstSceneIndex" + firstSceneIndex);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            loadedLevelBuildIndex = mainSceneIndex;
+        }
+        //HORRIBLE CODE HERE
+
+        yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        loadedLevelBuildIndex = mainSceneIndex;
+
+        enableGame(false);
+        AudioManager.instance.PlayMusic(musics[firstSceneIndex - 2]);
+        Color color = transition.color;
+        color.a = 1f;
+        transition.color = color;
+
+        yield return SceneManager.LoadSceneAsync(firstSceneIndex, LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(firstSceneIndex));
+        loadedLevelBuildIndex = firstSceneIndex;
+        
+
+        Debug.Log("Player Reset");
+        player.reset();
+
+        while (transition.color.a > 0)
+        {
+            color = transition.color;
+            color.a -= 0.1f;
+            transition.color = color;
+            yield return null;
+        }
+
+        enableGame(true);
+        GetComponent<DynamicGrid>().loadObstacles();
     }
 
     public void mainMenu()

@@ -556,11 +556,22 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 46070803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 216952609}
+        m_MethodName: mainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &46070803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,6 +622,8 @@ GameObject:
   - component: {fileID: 216952610}
   - component: {fileID: 216952608}
   - component: {fileID: 216952611}
+  - component: {fileID: 216952613}
+  - component: {fileID: 216952612}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -660,6 +673,12 @@ MonoBehaviour:
   text: {fileID: 889234877}
   dialogueBox: {fileID: 1829353477}
   button: {fileID: 42287128}
+  startDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+  endedDialogue:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &216952609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,6 +696,11 @@ MonoBehaviour:
   firstSceneIndex: 3
   gameOverPanel: {fileID: 658084505}
   uiController: {fileID: 1152295295}
+  musics:
+  - {fileID: 8300000, guid: 4e9997650458471429048b0f15d4b949, type: 3}
+  - {fileID: 8300000, guid: 0c67b7b167bc8ed4a8da05327bb6eadf, type: 3}
+  - {fileID: 8300000, guid: a28dbe36b60245046a7767e5aa0d9ab4, type: 3}
+  - {fileID: 8300000, guid: 936ce9a98e9ffc4448676d9a1ffdbf3b, type: 3}
 --- !u!114 &216952610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +725,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235af6792cc51fe4793f95c3fa9b7724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &216952612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216952605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2351b87bc9375fb418baa9912bbfd2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips: []
+--- !u!114 &216952613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216952605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eac9a00470b1584dbd34b3fbd73e99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClip: {fileID: 8300000, guid: 0c67b7b167bc8ed4a8da05327bb6eadf, type: 3}
 --- !u!1 &246963007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,7 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.74971783, g: 1, b: 0.3915094, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1704,7 +1754,7 @@ RectTransform:
   m_GameObject: {fileID: 658084503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1}
   m_Children:
   - {fileID: 370748712}
   - {fileID: 1284920658}
@@ -2975,7 +3025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260479251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 24, z: 0}
+  m_LocalPosition: {x: -3, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

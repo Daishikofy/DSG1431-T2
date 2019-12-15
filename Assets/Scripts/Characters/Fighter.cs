@@ -125,7 +125,7 @@ public class Fighter : Movable, IDamageable
 
     public virtual void OnDamaged(int damage, Element element)
     {
-        Debug.Log("On damage");
+        //Debug.Log("On damage");
         if (floatingText)
             ShowFloatingText(damage);
         if (animator != null)

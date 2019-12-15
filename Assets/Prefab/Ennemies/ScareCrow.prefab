@@ -113,7 +113,7 @@ MonoBehaviour:
   currentCombo: 0
   timeFromLastAttack: 0
   comboTiming: 0
-  floatingText: {fileID: 5628849307563013060, guid: 31b4183d359582944be6f0cecf010e5f,
+  floatingText: {fileID: 4644318530840181987, guid: eb501778d9f3fc7428aa060a60512a19,
     type: 3}
   stagger: 0
   moveSet: []
@@ -124,6 +124,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   updateComboUI:
+    m_PersistentCalls:
+      m_Calls: []
+  Ko:
     m_PersistentCalls:
       m_Calls: []
 --- !u!95 &1327887125529604

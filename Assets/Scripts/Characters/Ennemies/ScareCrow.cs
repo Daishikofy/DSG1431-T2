@@ -6,9 +6,9 @@ public class ScareCrow : Fighter
 {
     // Start is called before the first frame update
     protected override void Start()
-    {
-        animator.GetComponent<Animator>();
-        base.Start(); 
+    { 
+        base.Start();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

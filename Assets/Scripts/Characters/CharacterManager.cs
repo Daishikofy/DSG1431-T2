@@ -15,8 +15,8 @@ public class CharacterManager : MonoBehaviour
 
         int currentLayerIndex = anim.GetLayerIndex(currentLayer);
         int skinIndex = anim.GetLayerIndex(skinName);
-        Debug.Log("current: " + currentLayer + " - " + anim.GetLayerWeight(currentLayerIndex));
-        Debug.Log("skin: " + skinName + " - " + anim.GetLayerWeight(skinIndex));
+        //Debug.Log("current: " + currentLayer + " - " + anim.GetLayerWeight(currentLayerIndex));
+        //Debug.Log("skin: " + skinName + " - " + anim.GetLayerWeight(skinIndex));
         anim.SetLayerWeight(skinIndex, 1f);
         anim.SetLayerWeight(currentLayerIndex, 0f);
         currentLayer = skinName;
